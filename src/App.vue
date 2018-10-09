@@ -10,7 +10,7 @@
   export default {
     name: 'app',
     created() {
-      // 为了避免刷新丢失用户数据,需要程序每次进来时获取一下状态
+      // 为了避免刷新丢失用户数据,需要程序每次进来时获取一下状态123
       if (localStorage.eleToken) {
         const decode = jwt_decode(localStorage.eleToken);
         // token存储到vuex中
