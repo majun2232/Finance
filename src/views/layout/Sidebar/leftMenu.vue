@@ -86,7 +86,7 @@
 </script>
 <style scoped>
     .menu_page {
-        position: fixed;
+        /* position: fixed; */
         top: 60px;
         left: 0;
         min-height: 100%;
