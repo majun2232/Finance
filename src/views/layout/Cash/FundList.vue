@@ -153,12 +153,7 @@
           this.filterTableData = res.data;
           // 设置分页数据
           this.setPaginations();
-        }),
-          this.$axios("api/goods").then(res => {
-              console.log(res.data.goods[0].foods)
-         }
-        )
-
+        })
       },
       onEditMoney(row) {
         // 编辑

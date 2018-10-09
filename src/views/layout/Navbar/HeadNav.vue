@@ -12,17 +12,21 @@
 
                 <span class="title">卡索在线后台管理系统</span>
             </el-col>
-            <el-col :span="2" >
-                <el-button type="text" @click="dialogVisible = true">点击打开 Dialog</el-button>
+            <el-col :span="2">
+                <el-button type="text" @click="getname">点击打开 Dialog</el-button>
 
-                <el-dialog title="选择公司" :visible.sync="dialogVisible"  width=" 600px" :before-close="handleClose" >
+                <!-- <el-input placeholder="请输入内容"  @click="dialogVisible = true" prefix-icon="el-icon-search"  v-model="inputCompany">
+                </el-input> -->
+
+                <el-dialog title="选择公司" :visible.sync="dialogVisible" width=" 600px" :before-close="handleClose">
 
                     <!-- <hr class="fengexiang" /> -->
-                    <companyTree/>
-                    <span slot="footer" class="dialog-footer">
+                    <!-- <companyTree v-on:inputCompany="companyName"/> -->
+                      <companyTree/>
+                    <!-- <span slot="footer" class="dialog-footer">
                         <el-button @click="dialogVisible = false">取 消</el-button>
                         <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
-                    </span>
+                    </span> -->
                 </el-dialog>
 
             </el-col>
@@ -62,7 +66,8 @@
         data() {
             return {
                 dialogVisible: false,
-                isCollapse: true
+                isCollapse: true,
+                inputCompany:""
             }
         },
         components: {
@@ -70,10 +75,6 @@
             companyTree
         },
         computed: {
-            // user() {
-            //     return this.$store.getters.user;
-            // },
-            //  如下声明,可以在组件中直接拿到store中的数据
             ...mapGetters([
                 'user', 'sidebar'
             ])
@@ -93,6 +94,9 @@
             showInfoList() {
                 // console.log("个人信息")
                 this.$router.push("/infoshow")
+            },
+            getname(){
+             this.dialogVisible = true
             },
             logout() {
                 // console.log("退出")
@@ -200,7 +204,4 @@
     .el-dropdown {
         color: #fff;
     }
- 
 </style>
-
-

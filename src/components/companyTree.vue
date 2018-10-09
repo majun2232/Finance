@@ -12,17 +12,19 @@
                     children: 'children',
                     label: 'name'
                 },
-                companyList: []
+                companyList: [],
+                companyName:""
             }
         },
         methods: {
             handleNodeClick(data) {
-                console.log(data);
+                console.log(data.name);
+                this.$emit('companyName',data.name)
             }
         },
         created() {
             this.$axios.get("api/qwe").then(res => {
-                console.log(res.data.data.names)
+                // console.log(res.data.data.names)
                 this.companyList = res.data.data.names
             })
         },
