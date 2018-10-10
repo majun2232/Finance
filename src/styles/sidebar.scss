@@ -1,15 +1,4 @@
 #app {
-  // 主体区域
-  .main-container {
-    // min-height: 100%;
-    transition: margin-left .28s;
-
-    margin-left: 256px;
-    position: relative;
-  // 加一个背景
-    background: #f0f2f5;
-  }
-  // 侧边栏
   .sidebar-container {
     transition: width 0.28s;
     width: 256px !important;
@@ -17,66 +6,126 @@
     position: fixed;
     float: left;
     font-size: 0px;
-    top: 0;
+    top: 60px;
     bottom: 0;
     left: 0;
     z-index: 1001;
     overflow: hidden;
-    //reset element-ui css
+
+    // 单一级菜单打开时显示颜色,貌似没什么用
+    .el-submenu.is-opened {
+      .el-submenu__title {
+        &:hover {
+          background-color: $menuHover !important;
+          color: $fontActive ;
+        }
+        // 展开时显示颜色,貌似也没什么用
+        // background-color:$menuHover !important;
+      }
+  }
+
+  li.is-active {
+    background-color: #409EFF !important;
+    
+ }
+ // 菜单li标签hover变色
+ li:hover {
+           background-color: #409EFF !important;
+           color: #409EFF;
+         }
+ // 以下是单独陪一二级颜色
+ // 当子菜单栏被点击时背景
+ // .el-menu-item.is-active {
+ //    background-color: #409EFF !important;
+ // }
+ // 一级菜单被点击时背景
+ // .el-menu-vertical-demo.is-active {
+ //    background-color: #409EFF ;
+ // }
+    // 多余部位背景颜色
+    background-color: #324057;
+  //  侧边栏关闭动画重写
     .horizontal-collapse-transition {
       transition: 0s width ease-in-out, 0s padding-left ease-in-out, 0s padding-right ease-in-out;
     }
-    .el-scrollbar__bar.is-vertical{
+
+    .el-scrollbar__bar.is-vertical {
       right: 0px;
     }
+
     .scrollbar-wrapper {
-      overflow-x: hidden!important;
+      overflow-x: hidden !important;
+
       .el-scrollbar__view {
         height: 100%;
       }
     }
+
     .is-horizontal {
       display: none;
     }
+
     a {
       display: inline-block;
       width: 100%;
       overflow: hidden;
     }
-    .svg-icon {
-      margin-right: 16px;
-    }
     .el-menu {
       border: none;
       height: 100%;
       width: 100% !important;
+      background-color:$menuBg;
     }
+
+// 图标与字体的间距
+    .fa-margin {
+      margin-right: 8px;
+    }
+// 图标大小
+    i {
+      font-size: 16px;
+     
+    }
+// 字体大小
+    span {
+      font-size: 14px;
+    }
+ 
   }
+// 隐藏侧边栏样式
   .hideSidebar {
     .sidebar-container {
       // width: 36px !important;
       width: 64px !important;
     }
+
     .main-container {
       // margin-left: 36px;
       margin-left: 64px;
     }
+
     .submenu-title-noDropdown {
       padding-left: 10px !important;
       position: relative;
+
       .el-tooltip {
         padding: 0 10px !important;
+        
       }
     }
+
     .el-submenu {
       overflow: hidden;
+
       &>.el-submenu__title {
-        padding-left: 10px !important;
+        // padding-left: 10px !important;
+// color: #fff;
         .el-submenu__icon-arrow {
           display: none;
         }
       }
     }
+// 当折叠时显示的样式
     .el-menu--collapse {
       .el-submenu {
         &>.el-submenu__title {
@@ -90,19 +139,25 @@
         }
       }
     }
+    // 隐藏单独样式结束
   }
+
   .sidebar-container .nest-menu .el-submenu>.el-submenu__title,
+  // 当点击展开时的背景
   .sidebar-container .el-submenu .el-menu-item {
-    // min-width: 180px !important;
     min-width: 256px !important;
-    background-color: $subMenuBg !important;
+    background-color: $subMenuBg ;
+   
+// 当鼠标移到上面时颜色
     &:hover {
       background-color: $menuHover !important;
+      color: $fontActive ;
     }
+
   }
+
   .el-menu--collapse .el-menu .el-submenu {
-    // min-width: 180px !important;
-    min-width: 256px !important;
+    min-width: 64px !important;
   }
 
   //适配移动端
@@ -110,29 +165,24 @@
     .main-container {
       margin-left: 0px;
     }
+
     .sidebar-container {
       transition: transform .28s;
-      // width: 180px !important;
       width: 256px !important;
     }
+
     &.hideSidebar {
       .sidebar-container {
         transition-duration: 0.3s;
-        // transform: translate3d(-180px, 0, 0);
         transform: translate3d(-256px, 0, 0);
       }
     }
   }
+
   .withoutAnimation {
     .main-container,
     .sidebar-container {
       transition: none;
     }
   }
-
-  // 顶部栏
-  .el-header{
-    padding: 0  ;
-  }
-  
 }
