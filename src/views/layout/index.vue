@@ -1,9 +1,9 @@
 <template>
   <div :class="classObj" class="app-wrapper">
-    <!-- <HeadNav></HeadNav> -->
+    <HeadNav></HeadNav>
     <leftMenu class="sidebar-container" />
     <div class="main-container">
-      <router-view></router-view>
+      <router-view class="containerMain"></router-view>
     </div>
   </div>
 </template>

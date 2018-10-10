@@ -2,13 +2,13 @@
     <header class="head-nav">
         <el-row :span="24">
             <!-- 折叠控制 -->
-            <el-col :span="2" class="logo-contener">
-                logo
+            <el-col :span="4" class="logo-contener">
+                logo我是放图片的
             </el-col>
-            <el-col :span="2" class="logo-contener">
+            <el-col :span="2" >
                 <hamburger :toggle-click="toggleSideBar" :is-active="sidebar.opened" class="hamburger-container" />
             </el-col>
-            <el-col :span="2" class="logo-contener">
+            <el-col :span="6" >
 
                 <span class="title">卡索在线后台管理系统</span>
             </el-col>
@@ -123,20 +123,6 @@
 </script>
 
 <style scoped>
-    .logo-contener {
-        line-height: 60px;
-        min-width: 400px;
-
-    }
-
-    .logo {
-        height: 50px;
-        width: 50px;
-        margin-right: 5px;
-        vertical-align: middle;
-        display: inline-block;
-    }
-
     .title {
         vertical-align: middle;
         font-size: 22px;
