@@ -25,25 +25,26 @@
   }
 
   li.is-active {
-    background-color: #409EFF !important;
+    background-color: $menuHover !important;
     
  }
  // 菜单li标签hover变色
  li:hover {
-           background-color: #409EFF !important;
-           color: #409EFF;
+           background-color:$menuHover !important;
+           color: $fontActive ;
          }
+      
  // 以下是单独陪一二级颜色
  // 当子菜单栏被点击时背景
- // .el-menu-item.is-active {
- //    background-color: #409EFF !important;
- // }
+ .el-menu-item.is-active {
+    background-color: #409EFF !important;
+ }
  // 一级菜单被点击时背景
  // .el-menu-vertical-demo.is-active {
  //    background-color: #409EFF ;
  // }
     // 多余部位背景颜色
-    background-color: #324057;
+    background-color: $menuBg;
   //  侧边栏关闭动画重写
     .horizontal-collapse-transition {
       transition: 0s width ease-in-out, 0s padding-left ease-in-out, 0s padding-right ease-in-out;
@@ -95,12 +96,10 @@
 // 隐藏侧边栏样式
   .hideSidebar {
     .sidebar-container {
-      // width: 36px !important;
       width: 64px !important;
     }
 
     .main-container {
-      // margin-left: 36px;
       margin-left: 64px;
     }
 
@@ -116,10 +115,10 @@
 
     .el-submenu {
       overflow: hidden;
-
       &>.el-submenu__title {
+        // 下面控制图标的padding,默认是居中,不用放出来
         // padding-left: 10px !important;
-// color: #fff;
+        //  color: #fff;
         .el-submenu__icon-arrow {
           display: none;
         }

@@ -1,9 +1,7 @@
 <template>
-    <el-row >
-        <el-col>
-          
+   
             <el-menu mode="vertical"  :collapse="isCollapse" text-color="#9fa7ae"
-                active-text-color="#fefefe"   background-color="#324057"
+                active-text-color="#fefefe"   
                 class="el-menu-vertical-demo">
                 <router-link to="/home">
                     <el-menu-item index="0">
@@ -45,8 +43,7 @@
                     </el-menu-item>
                 </router-link>
             </el-menu>
-        </el-col>
-    </el-row>
+  
 </template>
 <script>
     import {
@@ -103,6 +100,9 @@
         }
     };
 </script>
-<style lang='scss' scoped>
-
+<style lang='scss' >
+//  .el-submenu__title:hover {
+//       background-color: #1890ff !important;
+     
+//     }
 </style>
