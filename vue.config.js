@@ -27,12 +27,32 @@ module.exports = {
             extensions: ['.js', '.vue', '.json',".css"],
              alias: {
                'vue$': 'vue/dist/vue.esm.js',
-               '@': resolve('./src'),
-               '@C': resolve('./src/components'),
-               '@a': resolve('./src/assets'),
+               '@': resolve('src'),
+               '@c': resolve('src/components'),
+               '@a': resolve('src/assets'),
              }
          }
-
+        //  config.module = {
+        //     rules: [
+        //         {
+        //             test: /\.svg$/,
+        //             loader: 'svg-sprite-loader',
+        //             include: [resolve('src/icons')],
+        //             options: {
+        //               symbolId: 'icon-[name]'
+        //             }
+        //           },
+        //           {
+        //             test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+        //             loader: 'url-loader',
+        //             exclude: [resolve('src/icons')],
+        //             options: {
+        //               limit: 10000,
+        //               name: utils.assetsPath('img/[name].[hash:7].[ext]')
+        //             }
+        //           }
+        //     ]
+        //  }
         // Object.assign(config, { // 开发生产共同配置
         //     resolve: {
         //         alias: {

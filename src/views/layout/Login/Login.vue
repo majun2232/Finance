@@ -1,34 +1,41 @@
 <template>
-    <div class="login">
-        <!-- 背景 -->
-        <div class="bg bg-blur"></div>
-        <!-- 表单 -->
-        <section class="form_container">
-            <div class="manage_tip">
-                <span class="title">卡索在线后台管理系统</span>
-                <el-form :model="loginUser" :rules="rules" ref="loginForm" label-width="60px" class="loginForm">
+    <div class="login-container">
+        <div class="login-border">
+            <!-- banner -->
+            <i class="bannerimg"></i>
+            <!-- 表单 -->
+            <el-form :model="loginUser" :rules="rules" ref="loginForm" class="login-form">
+                <div class="title">智能财务决策支持系统V5.0</div>
+                <P>用户名</P>
+                <el-form-item prop="email">
+                    <el-input v-model="loginUser.email" placeholder="请输入用户名"></el-input>
+                </el-form-item>
+                <P>公司</P>
+                <el-form-item prop="email">
+                    <el-input v-model="loginUser.email" placeholder="请选择公司"></el-input>
+                </el-form-item>
+                <P>密码</P>
+                <el-form-item prop="password">
+                    <!-- 绑定一个keyup事件,实现按回车能模拟点击按钮,触发登陆 -->
+                    <el-input :type="pwdType" v-model="loginUser.password" placeholder="请输入密码" @keyup.enter.native="submitForm('loginForm')"></el-input>
+                    <span class="show-pwd" @click="showPwd">
+                        <svg-icon icon-class="eye" />
+                    </span>
+                </el-form-item>
 
-                    <el-form-item label="邮箱" prop="email">
-                        <el-input v-model="loginUser.email" placeholder="请输入email"></el-input>
-                    </el-form-item>
+                <el-form-item>
+                    <el-button type="primary" style="width:100%;" @click="submitForm('loginForm')">登陆</el-button>
+                </el-form-item>
+                <div class="tiparea">
+                    <p>还没有账号?现在<router-link to='register'>注册</router-link>
+                    </p>
+                </div>
 
-                    <el-form-item label="密码" prop="password">
-                        <!-- 绑定一个keyup事件,实现按回车能模拟点击按钮,触发登陆 -->
-                        <el-input type="password" v-model="loginUser.password" placeholder="请输入密码" @keyup.enter.native="submitForm('loginForm')"></el-input>
-                    </el-form-item>
+            </el-form>
+        </div>
 
-                    <el-form-item>
-                        <el-button type="primary" class="sumbmit_btn" @click="submitForm('loginForm')">登陆</el-button>
-                    </el-form-item>
-                    <div class="tiparea">
-                        <p>还没有账号?现在<router-link to='register'>注册</router-link>
-                        </p>
-                    </div>
-
-                </el-form>
-            </div>
-        </section>
     </div>
+
 </template>
 
 <script>
@@ -37,6 +44,7 @@
         name: 'Login',
         data() {
             return {
+                 pwdType: 'password',
                 loginUser: {
                     email: "",
                     password: "",
@@ -62,6 +70,13 @@
             }
         },
         methods: {
+            showPwd() {
+                if (this.pwdType === 'password') {
+                    this.pwdType = ''
+                } else {
+                    this.pwdType = 'password'
+                }
+            },
             submitForm(formName) {
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
@@ -73,15 +88,15 @@
     }
 </script>
 
-<style scoped>
-    .login {
+<style rel="stylesheet/scss" lang="scss">
+    /* .login {
         position: relative;
         width: 100%;
         height: 100%;
     }
 
     .bg {
-        background: url(../../../assets/bg.jpg);
+        background: url(~@a/loginpic.jpg);
         height: 100%;
         width: 100%;
     }
@@ -122,13 +137,9 @@
         width: 100%;
     }
 
-    .tiparea {
-        text-align: right;
-        font-size: 12px;
-        color: #333;
-    }
+ 
 
     .tiparea p a {
         color: #409eff;
-    }
+    } */
 </style>

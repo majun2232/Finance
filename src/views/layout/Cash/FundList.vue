@@ -80,7 +80,7 @@
 </template>
 
 <script>
-  import DialogFound from "../../../components/DialogFound";
+  import DialogFound from "@c/DialogFound";
   import moment from 'moment-timezone'
 
   export default {

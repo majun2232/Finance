@@ -23,7 +23,8 @@
     "moment-timezone":"0.5.21",
     "babel-preset-stage-2": "6.24.1",
     "sass-loader":"7.1.0",
-    "node-sass":"4.9.3"
+    "node-sass":"4.9.3",
+    "svg-sprite-loader": "3.8.0"
    
   },
   "postcss": {

@@ -59,11 +59,11 @@
 </template>
 
 <script>
-    import hamburger from '@C/Hamburger'
+    import hamburger from '@c/Hamburger'
     import {
         mapGetters
     } from 'vuex'
-    import companyTree from '@C/companyTree.vue'
+    import companyTree from '@c/companyTree.vue'
     export default {
         name: 'Headnav',
         data() {

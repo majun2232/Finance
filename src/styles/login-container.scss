@@ -1,0 +1,122 @@
+$bg:#2d3a4b;
+$light_gray:#000;
+$dark_gray:#889aa4;
+$light_gray:#000;
+
+/* reset element-ui css */
+.login-container {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background: url(~@a/loginpic.jpg) no-repeat center;
+    // background: url(../assets/loginpic.jpg) no-repeat  center;
+    background-size: cover;
+
+    .login-border {
+        border-radius: 5px;
+        height: 539px;
+        width: 674px;
+        position: relative;
+        background-color: #FFF;
+        box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.5);
+        border-radius: 5px;
+        margin: 200px auto;
+
+        .bannerimg {
+            width: 284px;
+            height: 85px;
+            display: inline-block;
+            background: url(~@a/logo1.png) no-repeat center;
+            box-shadow: 0px 0px NaNpx NaNpx rgba(232, 232, 232, 1);
+            position: absolute;
+            left: 195px;
+            top: -42px;
+        }
+        .login-form {
+            position: absolute;
+            top: 61px;
+            left: 99px;
+            width: 476px;
+            .title {
+                text-align: center;
+                font-size: 22px;
+                margin-bottom: 31px;
+                color: rgba(51, 51, 51, 1);
+            }
+            p{
+                font-size:18px;
+                color:rgba(112,125,149,1);
+                margin-bottom: 10px;
+            }
+            .el-input {
+                display: inline-block;
+                height: 52px;
+                width: 476px;
+                background-color: #F5F6F8;
+                font-size: 18px;
+                input {
+                    background: transparent;
+                    border: 0px;
+                    -webkit-appearance: none;
+                    border-radius: 0px;
+                    padding: 12px 5px 12px 15px;
+                    color: $light_gray;
+                    height: 52px;
+    
+                    &:-webkit-autofill {
+                        box-shadow: 0 0 0px 1000px $bg inset !important;
+                        -webkit-text-fill-color: rgba(0, 0, 0, 0.1) !important;
+                    }
+                }
+            }
+    
+            .el-form-item {
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                background: rgba(0, 0, 0, 0.1);
+                border-radius: 5px;
+                color: #000;
+            }
+    
+         
+    
+            // .tips {
+            //     font-size: 14px;
+            //     color: #fff;
+            //     margin-bottom: 10px;
+    
+            //     span {
+            //         &:first-of-type {
+            //             margin-right: 16px;
+            //         }
+            //     }
+            // }
+    
+         
+    
+            .show-pwd {
+                position: absolute;
+                right: 10px;
+                top: 7px;
+                font-size: 16px;
+                color: $dark_gray;
+                cursor: pointer;
+                user-select: none;
+            }
+    
+            // 下面不要
+            .tiparea {
+                text-align: right;
+                font-size: 12px;
+                color: #333;
+            }
+    
+
+            
+        }
+        
+        
+
+
+    }
+
+}
