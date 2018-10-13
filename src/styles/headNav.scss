@@ -1,41 +1,206 @@
+// 顶部头像下拉部分,由于是挂载到顶层,所以需要到顶层才能修改其属性
+.headlistUp {
+
+    .info {
+        @include topicon;
+        background: url(../assets/topicon/info.png) no-repeat;
+    }
+
+    .about {
+        @include topicon;
+        background: url(../assets/topicon/about.png) no-repeat;
+    }
+
+    .help {
+        @include topicon;
+        background: url(../assets/topicon/help.png) no-repeat;
+    }
+
+    .logout {
+        @include topicon;
+        background: url(../assets/topicon/logout.png) no-repeat;
+    }
+
+    .manage {
+        @include topicon;
+        background: url(../assets/topicon/manage.png) no-repeat;
+    }
+
+    .el-dropdown-menu__item {
+        width: 150px;
+
+    }
+
+    // 头像下拉hover
+    .el-dropdown-menu__item:not(.is-disabled):hover {
+        background-color: #E6F7FF;
+        color: #666666;
+    }
+
+}
+
+
 .head-nav {
     position: fixed;
-    z-index: 1002;
-    width: 100%;
+    top: 0;
+    z-index: 100;
+    width: calc(100% - 256px);
+    // width: 100%;
     height: $topHeight;
-    padding: 5px;
-    background: #e5e5e5; 
+    // padding: 10px;
+    background: #fff;
     color: #1f2d3d;
-    border-bottom: 1px solid #1f2d3d;
-    .logo-contener{
-        line-height: 60px;
+    border-bottom: 1px solid $NonbugColor;
+
+    .topcontent {
+        line-height: 64px;
+        height: 64px;
+        float: right;
+margin-right: 20px;
+        // width: 100%;
+        .title {
+            vertical-align: middle;
+            font-size: 22px;
+            font-family: "Microsoft YaHei";
+            letter-spacing: 3px;
+        }
+
+        .iconclass {
+            margin-right: 10px;
+        }
+
+        .userinfo {
+            display: inline-block;
+        }
+
+        .underline {
+            padding-bottom: 5px;
+            border-bottom: 2px solid #F0F2F5;
+            margin-right: 10px;
+        }
+
+        .user {
+            line-height: 40px;
+            text-align: right;
+        }
+
+        .avatar {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            vertical-align: middle;
+            // display: inline-block;
+        }
+
+        .welcome {
+            display: inline-block;
+            width: auto;
+            vertical-align: middle;
+            padding: 0 5px;
+        }
+
+        .name {
+            line-height: 20px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .comename {
+            font-size: 14px;
+        }
+
+        .avatarname {
+            color: #409eff;
+            font-weight: bolder;
+        }
+
+        .username {
+            cursor: pointer;
+            margin-right: 5px;
+
+            .icon-bottom {
+                border-bottom: 2px solid rgb(1, 8, 17);
+            }
+        }
     }
-    .el-dialog__header {     
+
+    .hamburger-container {
+        line-height: 64px;
+        height: 64px;
+        float: left;
+        padding: 0 10px;
+    }
+
+    .el-dialog {
+        width: 600px;
+    }
+
+    // 公司选择头部
+    .el-dialog__header {
+        line-height: 56px;
+        height: 56px;
+        padding-top: 0px;
+        padding-bottom: 0px;
         padding-left: 30px;
         border-bottom: 1px solid#e5e5e5
-       
     }
-    .el-dialog__title{
-        font-size: 16px;
+
+    .el-dialog__title {
+        // font-size: 16px;
         color: #333333;
     }
-    .el-dialog__headerbtn .el-dialog__close{
+
+    .el-dialog__headerbtn {
+        top: 20px;
+    }
+
+    .el-dialog__headerbtn .el-dialog__close {
         color: #333333;
     }
+
     // 文件夹图标
-    .el-tree-node__expand-icon{
+    .el-tree-node__expand-icon {
         // border:0;
-    //    height: 16px;
-    //    width: 16px;
-    font-size:16px;
+        //    height: 16px;
+        //    width: 16px;
+        font-size: 16px;
     }
-    .el-dialog__body{
-        padding-top:8px;
-        padding-left: 90px;
-       height: 435px;
-       overflow: auto;
+
+    // 公司选择弹框
+    .el-dialog__body {
+        padding-top: 8px;
+        padding-left: 60px;
+        // padding-left: 0px;
+        height: 435px;
+
+        .el-tree {
+            height: 400px;
+
+            overflow: auto;
+        }
     }
-    .el-tree-node__label{
-        font-size:16px;
+
+    .el-tree-node__label {
+        font-size: 16px;
     }
+}
+
+#app {
+
+  
+    .mobile {
+        .head-nav {
+            .el-dialog {
+                width: 95%;
+            }
+        }
+
+        .el-dialog__body {
+            padding-left: 0px;
+        }
+    }
+}
+  // 下拉框到顶部的距离,这里已经是修改了全局属性
+  .el-popper[x-placement^=bottom] {
+    margin-top: 6px;
 }

@@ -6,46 +6,82 @@
     position: fixed;
     float: left;
     font-size: 0px;
-    top: $topHeight;
+    // top: $topHeight;
     bottom: 0;
     left: 0;
     z-index: 1001;
     overflow: hidden;
 
     // 单一级菜单打开时显示颜色,貌似没什么用
-    .el-submenu.is-opened {
+    .el-submenu {
       .el-submenu__title {
-        &:hover {
-          background-color: $menuHover !important;
-          color: $fontActive ;
-        }
-        // 展开时显示颜色,貌似也没什么用
-        // background-color:$menuHover !important;
+        color: $fontColor;
       }
-  }
 
-  li.is-active {
-    background-color: $menuHover !important;
-    
- }
- // 菜单li标签hover变色
- li:hover {
-           background-color:$menuHover !important;
-           color: $fontActive ;
-         }
-      
- // 以下是单独陪一二级颜色
- // 当子菜单栏被点击时背景
- .el-menu-item.is-active {
-    background-color: #409EFF !important;
- }
- // 一级菜单被点击时背景
- // .el-menu-vertical-demo.is-active {
- //    background-color: #409EFF ;
- // }
+
+      .is-opened {
+        .el-submenu__title {
+
+          &:hover {
+            background-color: $menuHover !important;
+            color: $fontActive;
+          }
+
+          // 展开时显示颜色,貌似也没什么用
+          // background-color:$menuHover !important;
+        }
+      }
+    }
+
+    //   li.is-active {
+    //     background-color: $menuHover !important;
+
+    //  }
+    // 菜单li标签hover变色
+    //  li:hover {
+    //            background-color:$menuHover !important;
+    //            color: $fontActive ;
+    //          }
+
+    // 以下是单独陪一二级颜色
+    // 当子菜单栏被点击时背景
+    .el-menu-item.is-active {
+      background-color: #409EFF !important;
+    }
+
+    .el-menu-item {
+      color: $fontColor;
+    }
+
+    .el-submenu__title:focus,
+    .el-submenu__title:hover {
+      background-color: $menuHover;
+    }
+
+    .el-menu-item:focus,
+    .el-menu-item:hover {
+      background-color: $menuHover;
+    }
+
+    // 一级菜单被点击时背景
+    // .el-menu-vertical-demo.is-active {
+    //    background-color: #409EFF ;
+    // }
     // 多余部位背景颜色
     background-color: $menuBg;
-  //  侧边栏关闭动画重写
+
+    // logo样式
+      .logo-contener{
+        margin-left: 36px;
+        margin-top: 12px;
+        height: 40px;
+        width: 184px;
+        background: url(~@a/logo.png) no-repeat;
+        background-size: 100% 100%;
+     
+   
+    }
+    //  侧边栏关闭动画重写
     .horizontal-collapse-transition {
       transition: 0s width ease-in-out, 0s padding-left ease-in-out, 0s padding-right ease-in-out;
     }
@@ -71,29 +107,34 @@
       width: 100%;
       overflow: hidden;
     }
+
     .el-menu {
       border: none;
       height: 100%;
       width: 100% !important;
-      background-color:$menuBg;
+      background-color: $menuBg;
+
     }
 
-// 图标与字体的间距
+    // 图标与字体的间距
     .fa-margin {
       margin-right: 8px;
     }
-// 图标大小
+
+    // 图标大小
     i {
       font-size: 16px;
-     
+
     }
-// 字体大小
+
+    // 字体大小
     span {
       font-size: 14px;
     }
- 
+
   }
-// 隐藏侧边栏样式
+
+  // 隐藏侧边栏样式,对部分属性重写
   .hideSidebar {
     .sidebar-container {
       width: 64px !important;
@@ -101,6 +142,11 @@
 
     .main-container {
       margin-left: 64px;
+      // width: calc(100% - 64px);
+    }
+    .head-nav{
+      width: calc(100% - 64px);
+
     }
 
     .submenu-title-noDropdown {
@@ -109,22 +155,25 @@
 
       .el-tooltip {
         padding: 0 10px !important;
-        
+
       }
     }
 
     .el-submenu {
       overflow: hidden;
+
       &>.el-submenu__title {
+
         // 下面控制图标的padding,默认是居中,不用放出来
         // padding-left: 10px !important;
-        //  color: #fff;
+        //  color: #fff !important;
         .el-submenu__icon-arrow {
           display: none;
         }
       }
     }
-// 当折叠时显示的样式11
+
+    // 当折叠时显示的样式
     .el-menu--collapse {
       .el-submenu {
         &>.el-submenu__title {
@@ -138,6 +187,14 @@
         }
       }
     }
+    // 隐藏时logo的样式
+    .logo-contener{
+      margin-left: 9px;
+      margin-top: 12px;
+      height: 39px;
+      width: 50px; 
+      background: url(~@a/logo.png) no-repeat;
+  }
     // 隐藏单独样式结束
   }
 
@@ -145,12 +202,12 @@
   // 当点击展开时的背景
   .sidebar-container .el-submenu .el-menu-item {
     min-width: 256px !important;
-    background-color: $subMenuBg ;
-   
-// 当鼠标移到上面时颜色
+    background-color: $subMenuBg;
+
+    // 当鼠标移到上面时颜色
     &:hover {
       background-color: $menuHover !important;
-      color: $fontActive ;
+      color: $fontActive;
     }
 
   }
@@ -163,6 +220,11 @@
   .mobile {
     .main-container {
       margin-left: 0px;
+      width:100%;
+      .head-nav{
+        width:100%;
+      }
+      
     }
 
     .sidebar-container {
@@ -179,6 +241,7 @@
   }
 
   .withoutAnimation {
+
     .main-container,
     .sidebar-container {
       transition: none;

@@ -1,9 +1,9 @@
 <template>
-  <div :class="classObj" class="app-wrapper">
-    <HeadNav></HeadNav>
+  <div :class="classObj" class="app-wrapper"> 
     <leftMenu class="sidebar-container" />
     <div class="main-container">
       <router-view class="containerMain"></router-view>
+        <HeadNav></HeadNav>
     </div>
   </div>
 </template>
@@ -47,11 +47,11 @@
   @import "src/styles/mixin.scss";
 
   .app-wrapper {
-    // @include clearfix;
+    @include clearfix;
     position: relative;
     height: 100%;
     width: 100%;
-
+ background-color:#F0F2F5 ;
     &.mobile.openSidebar {
       position: fixed;
       top: 0;

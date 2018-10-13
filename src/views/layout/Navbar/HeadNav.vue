@@ -1,57 +1,60 @@
 <template>
     <header class="head-nav">
-        <el-row :span="24">
-            <!-- 折叠控制 -->
-            <el-col :span="4" class="logo-contener">
-                logo我是放图片的
-            </el-col>
-            <el-col :span="2" >
-                <hamburger :toggle-click="toggleSideBar" :is-active="sidebar.opened" class="hamburger-container" />
-            </el-col>
-            <el-col :span="6" >
-
-                <span class="title">卡索在线后台管理系统</span>
-            </el-col>
-            <el-col :span="2">
-                <el-button type="text" @click="getname">点击打开 Dialog</el-button>
-
-                <!-- <el-input placeholder="请输入内容"  @click="dialogVisible = true" prefix-icon="el-icon-search"  v-model="inputCompany">
-                </el-input> -->
-
-                <el-dialog title="选择公司" :visible.sync="dialogVisible" width=" 600px" :before-close="handleClose">
-
-                    <!-- <hr class="fengexiang" /> -->
-                    <!-- <companyTree v-on:inputCompany="companyName"/> -->
-                      <companyTree/>
-                    <!-- <span slot="footer" class="dialog-footer">
+        <hamburger :toggle-click="toggleSideBar" :is-active="sidebar.opened" class="hamburger-container" />
+        <div class="topcontent">
+            <i class="el-icon-search iconclass"></i>
+            <el-button type="text" @click="getname" class="underline">请选择公司信息</el-button>
+            <el-dialog title="选择公司" :visible.sync="dialogVisible"  :before-close="handleClose" :modal-append-to-body="false">
+                <companyTree />
+                <!-- <span slot="footer" class="dialog-footer">
                         <el-button @click="dialogVisible = false">取 消</el-button>
                         <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
                     </span> -->
-                </el-dialog>
+            </el-dialog>
+            <i class="el-icon-date iconclass"></i>
+            <el-button type="text" class="underline">年份选择</el-button>
 
-            </el-col>
-            <el-col :span="2" class="user">
-                <div class="userinfo">
-                    <img :src="user.avatar" alt="" class="avatar">
-                    <div class="welcome">
-                        <p class="name comename">欢迎</p>
-                        <p class="name avatarneme">{{user.name}}</p>
-                    </div>
-                    <span class="username">
-                        <!-- 下啦箭头 -->
-                        <el-dropdown trigger="click" @command="setDialogInfo">
-                            <span class="el-dropdown-link">
-                                <i class="el-icon-caret-bottom el-icon--right"></i>
-                            </span>
-                            <el-dropdown-menu slot="dropdown">
-                                <el-dropdown-item command="info">个人信息</el-dropdown-item>
-                                <el-dropdown-item command="logout">退出</el-dropdown-item>
-                            </el-dropdown-menu>
-                        </el-dropdown>
-                    </span>
+            <el-button type="text" class="underline">月份选择</el-button>
+
+            <i class="el-icon-bell iconclass"></i>
+
+            <div class="userinfo">
+                <img :src="user.avatar" alt="" class="avatar">
+                <div class="welcome">
+                    <p class="name avatarneme">{{user.name}}</p>
                 </div>
-            </el-col>
-        </el-row>
+                <span class="username">
+                    <!-- 下啦箭头 -->
+                    <el-dropdown trigger="click" @command="setDialogInfo">
+                        <span class="el-dropdown-link">
+                            <i class="el-icon-caret-bottom el-icon--right"></i>
+                        </span>
+                        <el-dropdown-menu slot="dropdown" class="headlistUp">
+                            <el-dropdown-item command="info" >
+                                <i class="info"></i>
+                                <span>个人信息</span>
+                            </el-dropdown-item>
+                            <el-dropdown-item command="info">
+                                <i class="manage"></i>
+                                <span>管理互动</span>
+                            </el-dropdown-item>
+                            <el-dropdown-item command="info">
+                                <i class="about"></i>
+                                <span>关于软件</span>
+                            </el-dropdown-item>
+                            <el-dropdown-item command="info" class="icon-bottom">
+                                <i class="help"></i>
+                                <span>帮助</span>
+                            </el-dropdown-item>
+                            <el-dropdown-item command="logout">
+                                <i class="logout"></i>
+                                <span> 退出</span>
+                            </el-dropdown-item>
+                        </el-dropdown-menu>
+                    </el-dropdown>
+                </span>
+            </div>
+        </div>
     </header>
 </template>
 
@@ -67,7 +70,7 @@
             return {
                 dialogVisible: false,
                 isCollapse: true,
-                inputCompany:""
+                inputCompany: ""
             }
         },
         components: {
@@ -95,8 +98,8 @@
                 // console.log("个人信息")
                 this.$router.push("/infoshow")
             },
-            getname(){
-             this.dialogVisible = true
+            getname() {
+                this.dialogVisible = true
             },
             logout() {
                 // console.log("退出")
@@ -121,64 +124,11 @@
         }
     }
 </script>
-
-<style scoped>
-    .title {
-        vertical-align: middle;
-        font-size: 22px;
-        font-family: "Microsoft YaHei";
-        letter-spacing: 3px;
-    }
-
-    .fengexiang {
-        height: 1px;
-        border-top: 1px solid #ddd;
-        text-align: center;
-    }
-
-    .user {
-        line-height: 60px;
-        text-align: right;
-        float: right;
-        padding-right: 10px;
-    }
-
-    .avatar {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        vertical-align: middle;
+<style>
+    /* .info {
+        height: 12px;
+        width: 12px;
         display: inline-block;
-    }
-
-    .welcome {
-        display: inline-block;
-        width: auto;
-        vertical-align: middle;
-        padding: 0 5px;
-    }
-
-    .name {
-        line-height: 20px;
-        text-align: center;
-        font-size: 14px;
-    }
-
-    .comename {
-        font-size: 12px;
-    }
-
-    .avatarname {
-        color: #409eff;
-        font-weight: bolder;
-    }
-
-    .username {
-        cursor: pointer;
-        margin-right: 5px;
-    }
-
-    .el-dropdown {
-        color: #fff;
-    }
+        background: url(../../../assets/topicon/info.png) no-repeat;
+    } */
 </style>
