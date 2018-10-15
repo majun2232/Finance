@@ -31,9 +31,9 @@ axios.interceptors.request.use(config => {
     // 加载动画
     startLodading();
 
-    if(localStorage.eleToken){
+    if(localStorage.authorization){
         // 设置统一请求头
-        config.headers.Authorization=localStorage.eleToken;
+        config.headers.Authorization=localStorage.authorization;
     }
     return config;
 }, error => {
@@ -54,7 +54,7 @@ axios.interceptors.response.use(response => {
     if(status==401){
         Message.error("toen失效,请重新登陆!");
         // token过期,清除token
-        localStorage.removeItem('eleToken');
+        localStorage.removeItem('authorization');
         // 跳转到登陆页面
         router.push("/login");
     }

@@ -104,7 +104,7 @@
             logout() {
                 // console.log("退出")
                 // 清除token   
-                localStorage.removeItem('eleToken');
+                localStorage.removeItem('authorization');
                 // 设置vuex store
                 this.$store.dispatch('clearCurrentState');
                 // 跳转到登陆页面

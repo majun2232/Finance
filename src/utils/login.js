@@ -1,20 +1,37 @@
 import jwt_decode from 'jwt-decode'
-import axios from '../http'
+// import axios from '../http'
 import router from '../router'
 import store from '../store'
-
+import {
+    login1
+  } from '../api/login'
 const login =  {
     submit(loginUser) {
         //  console.log(loginUser)
-        axios.post('apis/api/users/login', loginUser)
-            .then(res => {
+//         axios({ method:"post",
+//         url:"/apis/auth/login",
+//         data:{
+//             account:'admin',password:'1'
+//         },
+//         transformRequest: [function (data) {
+//             let ret = ''
+//             for (let it in data) {
+//               ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&'
+//             }
+//             return ret
+//           }]
+//   })
+        // .post('apis/auth/login', {account:'admin',password:'1'})
+
+
+           login1('admin','1').then(res => {
                 // 获取token
-                // console.log(res)
+                console.log(res.data)
                 const {
                     token
                 } = res.data;
                 //  存储到ls
-                localStorage.setItem("eleToken", token);
+                localStorage.setItem("authorization", token);
                 // 解析token
                 const decode = jwt_decode(token);
                 // console.log(decode);

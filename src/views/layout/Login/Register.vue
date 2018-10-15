@@ -11,8 +11,8 @@
                         <el-input v-model="registerUser.name" placeholder="请输入用户名"></el-input>
                     </el-form-item>
 
-                    <el-form-item label="邮箱" prop="email">
-                        <el-input v-model="registerUser.email" placeholder="请输入email"></el-input>
+                    <el-form-item label="邮箱" prop="usename">
+                        <el-input v-model="registerUser.usename" placeholder="请输入usename"></el-input>
                     </el-form-item>
 
                     <el-form-item label="密码" prop="password">
@@ -55,7 +55,7 @@
             return {
                 registerUser: {
                     name: "",
-                    email: "",
+                    usename: "",
                     password: "",
                     password2: "",
                     identity: "",
@@ -73,8 +73,8 @@
                             trigger: "blur"
                         }
                     ],
-                    email: [{
-                        type: "email",
+                    usename: [{
+                        type: "usename",
                         required: true,
                         message: "邮箱格式不正确",
                         trigger: "blur"
@@ -113,7 +113,7 @@
                 // 测试
                 // this.$axios.post('http://10.22.199.116:8081/api/users/register', {
                 // this.$axios.post('apis/api/users/register', {
-                //     "email": "m2dw6665544433216r2@16wwertweert3.com",
+                //     "usename": "m2dw6665544433216r2@16wwertweert3.com",
                 //     "name": "kasuo",
                 //     "password": "123456",
                 //     "identity": "employee"
@@ -130,7 +130,7 @@
                                 })
                                 // 注册成功后直接调用登陆接口,免去再次跳转登陆界面
                                 loginMothod.submit({
-                                    "email": this.registerUser.email,
+                                    "usename": this.registerUser.usename,
                                     "password": this.registerUser.password2
                                 })
                             })

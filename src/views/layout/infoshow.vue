@@ -16,6 +16,14 @@
                      <i class="fa fa-cog"></i>
                       <span>{{user.identity == "manager" ? "管理员":"普通员工"}}</span>
                  </div>
+                 <div class="user-item">
+                   <span>note:{{user.note}}</span>
+                  <p>createUser:{{user.createUser}}</p>
+                    <p>industryId:{{user.industryId}}</p>
+                      <p>regionId:{{user.regionId}}</p>
+                      <p>text:{{user.text}}</p>
+                     
+                 </div>
              </div>
          </el-col>
      </el-row>    

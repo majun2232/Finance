@@ -7,12 +7,12 @@
             <el-form :model="loginUser" :rules="rules" ref="loginForm" class="login-form">
                 <div class="title">智能财务决策支持系统V5.0</div>
                 <P>用户名</P>
-                <el-form-item prop="email">
-                    <el-input v-model="loginUser.email" placeholder="请输入用户名"></el-input>
+                <el-form-item prop="usename">
+                    <el-input v-model="loginUser.usename" placeholder="请输入用户名"></el-input>
                 </el-form-item>
                 <P>公司</P>
-                <el-form-item prop="email">
-                    <el-input v-model="loginUser.email" placeholder="请选择公司"></el-input>
+                <el-form-item prop="usename">
+                    <el-input v-model="loginUser.usename" placeholder="请选择公司"></el-input>
                 </el-form-item>
                 <P>密码</P>
                 <el-form-item prop="password">
@@ -39,21 +39,36 @@
 </template>
 
 <script>
-    import loginMothod from '../../../utils/login.js'
+    // import loginMothod from '../../../utils/login.js'
+    import {
+        login
+    } from '~api/login.js'
+    import router from '../../../router.js'
+    import jwt_decode from 'jwt-decode'
+    import store from '../../../store'
+    //     import jwt_decode from 'jwt-decode'
+    //     import router from '../router'
+    // import store from '../store'
+
     export default {
         name: 'Login',
+
+        created() {
+            // 解决函数内部this丢失问题       
+            this.login = login;
+        },
         data() {
             return {
-                 pwdType: 'password',
+                pwdType: 'password',
                 loginUser: {
-                    email: "",
+                    usename: "",
                     password: "",
                 },
                 rules: {
-                    email: [{
-                        type: "email",
+                    usename: [{
+
                         required: true,
-                        message: "邮箱格式不正确",
+                        message: "用户名不能为空",
                         trigger: "blur"
                     }],
                     password: [{
@@ -61,7 +76,7 @@
                         message: "密码不能为空",
                         trigger: "blur"
                     }, {
-                        min: 6,
+                        min: 1,
                         max: 30,
                         message: "长度在6到30之间",
                         trigger: "blur"
@@ -70,6 +85,7 @@
             }
         },
         methods: {
+
             showPwd() {
                 if (this.pwdType === 'password') {
                     this.pwdType = ''
@@ -80,9 +96,34 @@
             submitForm(formName) {
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
-                        return loginMothod.submit(this.loginUser)
+                        // console.log(this);
+                        // debugger
+                        this.login(this.loginUser).then(res => {
+                            // 获取token
+                            
+                            const data = res.data.data;
+                           console.log(data)
+                            const token= data.authorization;
+                            // console.log(token);
+                            const company=data.company
+                            //  console.log(company)
+                             localStorage.setItem("authorization", token);
+                            //    token存储到vuex中
+                            store.dispatch("setIsAutnenticated", !this.isEmpty(token));
+                            store.dispatch("setUser", company);
+                            // 页面跳转
+                            router.push('/index')
+                        })
                     }
                 });
+            },
+            isEmpty(value) {
+                return (
+                    value === undefined ||
+                    value === null ||
+                    (typeof value === "object" && Object.keys(value).length === 0) ||
+                    (typeof value === "string" && value.trim().length === 0)
+                );
             }
         }
     }

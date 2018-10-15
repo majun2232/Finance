@@ -27,9 +27,11 @@ module.exports = {
             extensions: ['.js', '.vue', '.json',".css"],
              alias: {
                'vue$': 'vue/dist/vue.esm.js',
-               '@': resolve('./src'),
-               '@c': resolve('./src/components'),
-               '@a': resolve('./src/assets'),
+               '@': resolve('src'),
+               '@c': resolve('src/components'),
+               '@a': resolve('src/assets'), // 配置静态图片引入别名，引用图片时前面加～,在css中引入则加～
+               '~api': resolve('src/api')
+             
              }
          }
         //  config.module = {
@@ -84,7 +86,7 @@ module.exports = {
         // proxy: 'http://localhost:8081/api/', // 配置跨域处理,只有一个代理
         proxy: { // 配置跨域
             '/apis': {
-                target: 'http://localhost:5000/',
+                target: 'http://192.168.2.237:8005',
                 // target: 'http://10.22.199.116:8081/',//ip以后会变,不建议用
                 // target:'https://www.easy-mock.com/',
                 ws: true,
