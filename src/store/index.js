@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import app from './modules/sideopen'
+import sideopen from './modules/sideopen'
 import user from './modules/user'
 import getters from './getters'
 
@@ -8,7 +8,7 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
   modules: {
-    app,
+    sideopen,
     user
   },
   getters

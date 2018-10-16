@@ -10,10 +10,10 @@
                 <el-form-item prop="usename">
                     <el-input v-model="loginUser.usename" placeholder="请输入用户名"></el-input>
                 </el-form-item>
-                <P>公司</P>
+                <!-- <P>公司</P>
                 <el-form-item prop="usename">
                     <el-input v-model="loginUser.usename" placeholder="请选择公司"></el-input>
-                </el-form-item>
+                </el-form-item> -->
                 <P>密码</P>
                 <el-form-item prop="password">
                     <!-- 绑定一个keyup事件,实现按回车能模拟点击按钮,触发登陆 -->
@@ -39,16 +39,12 @@
 </template>
 
 <script>
-    // import loginMothod from '../../../utils/login.js'
     import {
         login
     } from '~api/login.js'
     import router from '../../../router.js'
     import jwt_decode from 'jwt-decode'
     import store from '../../../store'
-    //     import jwt_decode from 'jwt-decode'
-    //     import router from '../router'
-    // import store from '../store'
 
     export default {
         name: 'Login',
@@ -76,6 +72,7 @@
                         message: "密码不能为空",
                         trigger: "blur"
                     }, {
+                        // 需要修改  todo
                         min: 1,
                         max: 30,
                         message: "长度在6到30之间",
@@ -96,23 +93,27 @@
             submitForm(formName) {
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
-                        // console.log(this);
-                        // debugger
+
                         this.login(this.loginUser).then(res => {
                             // 获取token
-                            
                             const data = res.data.data;
-                           console.log(data)
-                            const token= data.authorization;
-                            // console.log(token);
-                            const company=data.company
-                            //  console.log(company)
-                             localStorage.setItem("authorization", token);
-                            //    token存储到vuex中
-                            store.dispatch("setIsAutnenticated", !this.isEmpty(token));
-                            store.dispatch("setUser", company);
-                            // 页面跳转
-                            router.push('/index')
+                            if (!this.isEmpty(data)) {
+                                const token = data.authorization;
+                                localStorage.setItem("authorization", token);
+                                var obj = JSON.stringify(data); //转化为JSON字符串
+                                localStorage.setItem("database", obj); //返回{"a":1,"b":2}
+                                //    token存储到vuex中
+                                store.dispatch("setIsAutnenticated", !this.isEmpty(token));
+                                store.dispatch("setUser", data);
+                                // 页面跳转
+                                router.push('/index')
+                            } else {
+                                alert("密码或账户输入错误")
+                                this.loginUser.usename = ''
+                                 this.loginUser.password = ''
+                            }
+                        }).catch(res => {
+                            alert("网络请求失败!")
                         })
                     }
                 });

@@ -41,7 +41,7 @@
 </template>
 
 <script>
-    import loginMothod from '../../../utils/login.js'
+
     export default {
         name: 'register',
         data() {

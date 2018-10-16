@@ -78,9 +78,16 @@
             companyTree
         },
         computed: {
-            ...mapGetters([
-                'user', 'sidebar'
-            ])
+            // ...mapGetters([
+            //     'user', 'sidebar'
+            // ])
+              user(){   
+           return this.$store.getters.user.user;
+       },
+       sidebar(){
+            return this.$store.getters.sidebar;
+       }
+
         },
         methods: {
             setDialogInfo(cmdItem) {
@@ -105,6 +112,7 @@
                 // console.log("退出")
                 // 清除token   
                 localStorage.removeItem('authorization');
+                localStorage.removeItem('database');
                 // 设置vuex store
                 this.$store.dispatch('clearCurrentState');
                 // 跳转到登陆页面
@@ -125,10 +133,5 @@
     }
 </script>
 <style>
-    /* .info {
-        height: 12px;
-        width: 12px;
-        display: inline-block;
-        background: url(../../../assets/topicon/info.png) no-repeat;
-    } */
+  
 </style>

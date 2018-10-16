@@ -12,16 +12,17 @@
                      <i class="fa fa-user"></i>
                      <span>{{user.name}}</span>
                  </div>
-                 <div class="user-item">
+                 <!-- <div class="user-item">
                      <i class="fa fa-cog"></i>
                       <span>{{user.identity == "manager" ? "管理员":"普通员工"}}</span>
-                 </div>
+                 </div> -->
                  <div class="user-item">
-                   <span>note:{{user.note}}</span>
-                  <p>createUser:{{user.createUser}}</p>
-                    <p>industryId:{{user.industryId}}</p>
-                      <p>regionId:{{user.regionId}}</p>
-                      <p>text:{{user.text}}</p>
+                   <span>trueName:{{user.trueName}}</span>
+                      <p>id:{{user.id}}</p>
+                  <p>email:{{user.email}}</p>
+                    <p>phone:{{user.phone}}</p>
+                      <p>sex:{{user.sex}}</p>
+                      <p>sign:{{user.sign}}</p>
                      
                  </div>
              </div>
@@ -39,10 +40,10 @@ name:'infoshow',
      }
    },
    computed: {
-       user(){
-           return this.$store.getters.user;
+       user(){   
+           return this.$store.getters.user.user;
        }
-   }
+   },
  }
 </script>
 

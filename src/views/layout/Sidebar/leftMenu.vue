@@ -1,56 +1,62 @@
 <template>
-<div>
-       <div class="logo-contener"></div>     
-      <el-menu mode="vertical" :collapse="isCollapse" >
-        <router-link to="/home">
-            <el-menu-item index="0">
-                <i class="fa fa-margin fa-server"></i>
-                <span slot="title">首页</span>
-            </el-menu-item>
-        </router-link>
-        <!-- 循环出主体内容 -->
-        <template v-for="item in items">
-            <el-submenu v-if="item.children" :index="item.path" :key="item.path">
-                <template slot="title">
-                    <i :class="'fa fa-margin '+item.icon"></i>
-                    <span slot="title">{{item.name}}</span>
-                </template>
-                <router-link v-for="(citem,cindex) in item.children" :to="citem.path" :key="cindex">
-                    <el-menu-item :index='citem.path'>
-                        <span slot="title">{{citem.name}}</span>
-                    </el-menu-item>
-                </router-link>
-            </el-submenu>
-        </template>
-        <router-link to="/foodlist">
-            <el-menu-item index="1">
-                <i class="fa fa-margin fa-server"></i>
-                <span slot="title">好吃食物</span>
-            </el-menu-item>
-        </router-link>
-        <router-link to="/companyTree">
-            <el-menu-item index="2">
-                <i class="fa fa-margin fa-server"></i>
-                <span slot="title">公司树</span>
-            </el-menu-item>
-        </router-link>
+    <div>
+        <div class="logo-contener"></div>
+        <el-menu mode="vertical" :collapse="isCollapse">
+            <router-link to="/home">
+                <el-menu-item index="0">
+                    <i class="fa fa-margin fa-server"></i>
+                    <span slot="title">首页</span>
+                </el-menu-item>
+            </router-link>
+            <!-- 循环出主体内容 -->
+            <template v-for="item in items">
+                <el-submenu v-if="item.children" :index="item.path" :key="item.path">
+                    <template slot="title">
+                        <i :class="'fa fa-margin '+item.icon"></i>
+                        <span slot="title">{{item.name}}</span>
+                    </template>
+                    <router-link v-for="(citem,cindex) in item.children" :to="citem.path" :key="cindex">
+                        <el-menu-item :index='citem.path'>
+                            <span slot="title">{{citem.name}}</span>
+                        </el-menu-item>
+                    </router-link>
+                </el-submenu>
+            </template>
+            <router-link to="/foodlist">
+                <el-menu-item index="1">
+                    <i class="fa fa-margin fa-server"></i>
+                    <span slot="title">好吃食物</span>
+                </el-menu-item>
+            </router-link>
+            <router-link to="/companyTree">
+                <el-menu-item index="2">
+                    <i class="fa fa-margin fa-server"></i>
+                    <span slot="title">公司树</span>
+                </el-menu-item>
+            </router-link>
 
-        <router-link to="/test">
-            <el-menu-item index="3">
-                <i class="fa fa-margin fa-server"></i>
-                <span slot="title">测试</span>
-            </el-menu-item>
-        </router-link>
-   </el-menu >
-   
-</div>
+            <router-link to="/test">
+                <el-menu-item index="3">
+                    <i class="fa fa-margin fa-server"></i>
+                    <span slot="title">测试</span>
+                </el-menu-item>
+            </router-link>
+        </el-menu>
+
+    </div>
 </template>
 <script>
     import {
         mapGetters
     } from 'vuex'
+    import {
+        findnode
+    } from '../../../api/findnode.js'
     export default {
         name: "leftmenu",
+        created() {
+            this.fetchData()
+        },
         data() {
             return {
                 items: [{
@@ -89,21 +95,30 @@
                             }
                         ]
                     }
-                ]
+                ],
+                userId: this.$store.getters.user.user.id
             };
         },
         computed: {
             ...mapGetters([
-                'sidebar',
+                'sidebar', 'user',
             ]),
             isCollapse() {
                 return !this.sidebar.opened
+            }
+
+        },
+        methods: {
+            fetchData() {
+                findnode("1").then(response => {
+                    console.log(response);
+                })
             }
         }
     };
 </script>
 <style lang='scss'>
 
-   
- 
+
+
 </style>
