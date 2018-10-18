@@ -96,6 +96,8 @@
 
                         this.login(this.loginUser).then(res => {
                             // 获取token
+                            console.log(res);
+                            
                             const data = res.data.data;
                             if (!this.isEmpty(data)) {
                                 const token = data.authorization;
@@ -118,14 +120,14 @@
                     }
                 });
             },
-            isEmpty(value) {
-                return (
-                    value === undefined ||
-                    value === null ||
-                    (typeof value === "object" && Object.keys(value).length === 0) ||
-                    (typeof value === "string" && value.trim().length === 0)
-                );
-            }
+            // isEmpty(value) {
+            //     return (
+            //         value === undefined ||
+            //         value === null ||
+            //         (typeof value === "object" && Object.keys(value).length === 0) ||
+            //         (typeof value === "string" && value.trim().length === 0)
+            //     );
+            // }
         }
     }
 </script>

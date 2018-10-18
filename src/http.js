@@ -32,8 +32,8 @@ axios.interceptors.request.use(config => {
     startLodading();
 
     if(localStorage.authorization){
-        // 设置统一请求头
-        config.headers.Authorization=localStorage.authorization;
+        // 设置统一请求头 todo 暂时屏蔽
+        // config.headers.Authorization=localStorage.authorization;
     }
     return config;
 }, error => {

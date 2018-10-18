@@ -5,17 +5,17 @@ export function login(loginUser) {
   return request({
     url: '/apis/auth/login',
     method: 'post',
-    data: {
+    params: {
       account: loginUser.usename,
       password:loginUser.password
-    },
-    transformRequest: [function (data) {
-      let ret = ''
-      for (let it in data) {
-        ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&'
-      }
-      return ret
-    }]
+    }
+    // transformRequest: [function (data) {
+    //   let ret = ''
+    //   for (let it in data) {
+    //     ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&'
+    //   }
+    //   return ret
+    // }]
   })
 }
 

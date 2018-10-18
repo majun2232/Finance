@@ -11,7 +11,12 @@
     left: 0;
     z-index: 1001;
     overflow: hidden;
-
+    .avatarleft{
+      height: 16px;
+      width: 16px;
+      display: inline-block;
+      margin-right: 8px;
+    }
     // 单一级菜单打开时显示颜色,貌似没什么用
     .el-submenu {
       .el-submenu__title {
