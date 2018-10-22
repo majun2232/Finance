@@ -19,10 +19,10 @@ const router = new Router({
             import('./views/layout/infoshow'),
         },
         {
-          path: '/home',
-          name: 'home',
+          path: '/banlanceSheet',
+          name: 'banlanceSheet',
           component: () =>
-            import('./views/layout/Home'),
+            import('./views/intelligenceReport/banlanceSheet.vue'),
         },
         {
           path: '/infoshow',

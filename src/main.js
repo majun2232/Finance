@@ -7,7 +7,7 @@ import store from './store'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import './styles/index.scss' // global css
-import '@/icons' // icon1
+import '@/icons/iconfont.css' // icon
 
 Vue.config.productionTip = false
 Vue.use(ElementUI);

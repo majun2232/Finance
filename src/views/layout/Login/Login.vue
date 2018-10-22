@@ -18,8 +18,7 @@
                 <el-form-item prop="password">
                     <!-- 绑定一个keyup事件,实现按回车能模拟点击按钮,触发登陆 -->
                     <el-input :type="pwdType" v-model="loginUser.password" placeholder="请输入密码" @keyup.enter.native="submitForm('loginForm')"></el-input>
-                    <span class="show-pwd" @click="showPwd">
-                        <svg-icon icon-class="eye" />
+                    <span class="show-pwd iconfont" @click="showPwd">&#xe61d;
                     </span>
                 </el-form-item>
 
@@ -30,12 +29,9 @@
                     <p>还没有账号?现在<router-link to='register'>注册</router-link>
                     </p>
                 </div>
-
             </el-form>
         </div>
-
     </div>
-
 </template>
 
 <script>
@@ -50,9 +46,10 @@
         name: 'Login',
 
         created() {
-            // 解决函数内部this丢失问题       
-            this.login = login;
+            //每次打开获取一下原来的用户名
+            this.loginUser.usename = localStorage.getItem("usename")
         },
+
         data() {
             return {
                 pwdType: 'password',
@@ -94,14 +91,16 @@
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
 
-                        this.login(this.loginUser).then(res => {
+                        login(this.loginUser).then(res => {
                             // 获取token
                             console.log(res);
-                            
+
                             const data = res.data.data;
                             if (!this.isEmpty(data)) {
                                 const token = data.authorization;
                                 localStorage.setItem("authorization", token);
+                                // 用户名记住,方便下次登录
+                                localStorage.setItem("usename", this.loginUser.usename);
                                 var obj = JSON.stringify(data); //转化为JSON字符串
                                 localStorage.setItem("database", obj); //返回{"a":1,"b":2}
                                 //    token存储到vuex中
@@ -112,7 +111,7 @@
                             } else {
                                 alert("密码或账户输入错误")
                                 this.loginUser.usename = ''
-                                 this.loginUser.password = ''
+                                this.loginUser.password = ''
                             }
                         }).catch(res => {
                             alert("网络请求失败!")
@@ -131,59 +130,3 @@
         }
     }
 </script>
-
-<style rel="stylesheet/scss" lang="scss">
-    /* .login {
-        position: relative;
-        width: 100%;
-        height: 100%;
-    }
-
-    .bg {
-        background: url(~@a/loginpic.jpg);
-        height: 100%;
-        width: 100%;
-    }
-
-    .bg-blur {
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: cover;
-    }
-
-    .form_container {
-        width: 370px;
-        height: 21px;
-        position: absolute;
-        top: 10%;
-        left: 34%;
-        padding: 25px;
-        border-radius: 5px;
-        text-align: center;
-    }
-
-    .title {
-        font-family: "Microsoft YaHei";
-        font-weight: bold;
-        font-size: 26px;
-        color: #fff;
-    }
-
-    .loginForm {
-        margin-top: 20px;
-        background-color: #fff;
-        padding: 20px 40px 20px 20px;
-        border-radius: 5px;
-        box-shadow: 0px 5px 10 px #cccc;
-    }
-
-    .sumbmit_btn {
-        width: 100%;
-    }
-
- 
-
-    .tiparea p a {
-        color: #409eff;
-    } */
-</style>

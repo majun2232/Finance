@@ -10,13 +10,15 @@
     bottom: 0;
     left: 0;
     z-index: 1001;
-    overflow: hidden;
-    .avatarleft{
+    overflow: auto;
+
+    .avatarleft {
       height: 16px;
       width: 16px;
       display: inline-block;
       margin-right: 8px;
     }
+
     // 单一级菜单打开时显示颜色,貌似没什么用
     .el-submenu {
       .el-submenu__title {
@@ -76,16 +78,17 @@
     background-color: $menuBg;
 
     // logo样式
-      .logo-contener{
-        margin-left: 36px;
-        margin-top: 12px;
-        height: 40px;
-        width: 184px;
-        background: url(../assets/logo.png) no-repeat;
-        background-size: 100% 100%;
-     
-   
+    .logo-contener {
+      margin-left: 36px;
+      margin-top: 12px;
+      height: 40px;
+      width: 184px;
+      background: url(../assets/logo.png) no-repeat;
+      background-size: 100% 100%;
+
+
     }
+
     //  侧边栏关闭动画重写
     .horizontal-collapse-transition {
       transition: 0s width ease-in-out, 0s padding-left ease-in-out, 0s padding-right ease-in-out;
@@ -93,6 +96,15 @@
 
     .el-scrollbar__bar.is-vertical {
       right: 0px;
+    }
+// 隐藏滑动条
+    .el-scrollbar__thumb {
+      display: none;
+    }
+
+    .el-scrollbar__wrap {
+      overflow-x: hidden;
+      overflow-y: auto;
     }
 
     .scrollbar-wrapper {
@@ -149,7 +161,8 @@
       margin-left: 64px;
       // width: calc(100% - 64px);
     }
-    .head-nav{
+
+    .head-nav {
       width: calc(100% - 64px);
 
     }
@@ -192,14 +205,16 @@
         }
       }
     }
+
     // 隐藏时logo的样式
-    .logo-contener{
+    .logo-contener {
       margin-left: 9px;
       margin-top: 12px;
       height: 39px;
-      width: 50px; 
+      width: 50px;
       background: url(../assets/logo.png) no-repeat;
-  }
+    }
+
     // 隐藏单独样式结束
   }
 
@@ -225,11 +240,12 @@
   .mobile {
     .main-container {
       margin-left: 0px;
-      width:100%;
-      .head-nav{
-        width:100%;
+      width: 100%;
+
+      .head-nav {
+        width: 100%;
       }
-      
+
     }
 
     .sidebar-container {

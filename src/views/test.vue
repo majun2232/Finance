@@ -1,72 +1,128 @@
 <template>
- <div>
- <el-col :span="12">
-    <h5>默认颜色</h5>
-    <el-menu
-      default-active="1"
-      class="el-menu-vertical-demo"
-      @open="handleOpen"
-      @close="handleClose">
-      <el-submenu index="2">
-        <template slot="title">
-          <i class="el-icon-location"></i>
-          <span>导航一1</span>
-        </template>
-
-        <el-menu-item-group>
-          <template slot="title">分组一</template>
-          <el-menu-item index="1-1">选项1</el-menu-item>
-          <el-menu-item index="1-2">选项2</el-menu-item>
-        </el-menu-item-group>
-        <el-menu-item-group title="分组2">
-          <el-menu-item index="1-3">选项3</el-menu-item>
-        </el-menu-item-group>
-        <el-submenu index="1-4">
-          <template slot="title">选项4</template>
-          <el-menu-item index="1-4-1">选项1</el-menu-item>
-        </el-submenu>
-      </el-submenu>
-      
-      <el-menu-item index="1">
-        <i class="el-icon-menu"></i>
-        <span slot="title">导航二</span>
-      </el-menu-item>
-      <el-menu-item index="3" disabled>
-        <i class="el-icon-document"></i>
-        <span slot="title">导航三</span>
-      </el-menu-item>
-      <el-menu-item index="4">
-        <i class="el-icon-setting"></i>
-        <span slot="title">导航四</span>
-      </el-menu-item>
-    </el-menu>
-  </el-col>
- </div>
+  <!-- <el-table :data="tableData" border="" height="400"  :summary-method="getSummaries"
+      show-summary style="width: 100%; margin-top: 20px">
+      <el-table-column prop="id" label="ID" width="180">
+      </el-table-column>
+      <el-table-column prop="price" label="单价">
+      </el-table-column>
+      <el-table-column prop="amount" label="数量">
+      </el-table-column>
+      <el-table-column prop="sum" label="总额">
+      </el-table-column>
+    </el-table> -->
+     <el-table
+    :data="tableData6"
+    border
+    height="400"
+    :summary-method="getSummaries"
+    show-summary
+    style="width: 100%; margin-top: 20px">
+    <el-table-column
+      prop="id"
+      label="ID"
+      width="180">
+    </el-table-column>
+  
+    <el-table-column
+      prop="price"
+      label="数值 1（元）">
+    </el-table-column>
+    <el-table-column
+      prop="amount"
+      label="数值 2（元）">
+    </el-table-column>
+   
+  </el-table>
 </template>
 
 <script>
- export default {
-    name:'',
-   data () {
-     return {
+  export default {
+// computed:{
+//   tableData() {
+//     this.tableData6.map((v,i)=>{
+//       v.sum=v.price*v.amount;
+//     });
+//     console.log(this.tableData6);
+    
+//     return this.tableData6
+//   }
+// },      
+methods: {
+   getSummaries(param) {
+        const {
+          columns,
+          data
+        } = param;
+        const sums = [];
+        // 行的遍历
+        columns.forEach((column, index) => {
+          console.log(index);
 
-     }
-   },
-   components: {
+          if (index === 0) {
+            sums[index] = '总价';
+            return;
+          }
+          // 把每列包装成一个数组,原数组被“映射”成对应新数组,经过处理飞数字的会变成nan
+          const values = data.map(function (item) {
+            return Number(item[column.property])
+          });
+          console.log(values);
+          //  如果每一个value都是汉字或其他,那么就返回假,只要有一个是数字就进行求和统计
+          if (!values.every(function (value) {
+              return isNaN(value)
+            })) {
+            // 求和函数
+            function getSum(total, num) {
+              const value = Number(num);
+              if (!isNaN(value)) {
+                return total + num;
+              } else {
+                return total;
+              }
+            }
+            // 对数组进行求和
+            sums[index] = values.reduce(getSum, 0);
+            sums[index] += ' 元';
+          } else {
+            sums[index] = 'N/A';
+          }
+        });
 
-   },
-      methods: {
-      handleOpen(key, keyPath) {
-        console.log(key, keyPath);
-      },
-      handleClose(key, keyPath) {
-        console.log(key, keyPath);
+        return sums;
       }
-    }
- }
+
+    },
+    data() {
+      return {
+          tableData6: [{
+      id: '12987122',
+      price: 10,
+      amount: 23,
+    }, {
+      id: '12987122',
+      price: 12,
+      amount: 12,
+    }, {
+      id: '12987122',
+      price: 3,
+      amount: 20,
+    }]
+      };
+    },
+   
+  };
 </script>
+<style scoped>
+  .el-table .warning-row {
+    background: rgb(238, 157, 7);
+  }
 
-<style lang='scss' scoped>
+  .el-table .success-row {
+    background: #66d62a;
+  }
 
- 
+  .item {
+    margin: 4px;
+    z-index: 1000;
+  }
 </style>

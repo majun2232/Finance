@@ -1,6 +1,8 @@
 const path = require('path')
 const debug = process.env.NODE_ENV !== 'production'
 const goods = require("./data.json")
+const finance= require("./tableData.json")
+const finance01= require("./tableData1.json")
 const company = require("./company.json")
 
 	
@@ -34,27 +36,7 @@ module.exports = {
              
              }
          }
-        //  config.module = {
-        //     rules: [
-        //         {
-        //             test: /\.svg$/,
-        //             loader: 'svg-sprite-loader',
-        //             include: [resolve('src/icons')],
-        //             options: {
-        //               symbolId: 'icon-[name]'
-        //             }
-        //           },
-        //           {
-        //             test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
-        //             loader: 'url-loader',
-        //             exclude: [resolve('src/icons')],
-        //             options: {
-        //               limit: 10000,
-        //               name: utils.assetsPath('img/[name].[hash:7].[ext]')
-        //             }
-        //           }
-        //     ]
-        //  }
+  
         // Object.assign(config, { // 开发生产共同配置
         //     resolve: {
         //         alias: {
@@ -105,6 +87,12 @@ module.exports = {
                // http://localhost:8080/api/qwe
                app.get('/api/qwe', (req, res) => {
                 res.json(company)
+            }),
+            app.get('/api/10101/201803/0002', (req, res) => {
+                res.json(finance)
+            })
+            app.get('/api/10101/201803/0001', (req, res) => {
+                res.json(finance01)
             })
 
         },

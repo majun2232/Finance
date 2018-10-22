@@ -2,48 +2,39 @@
     <div>
         <div class="logo-contener"></div>
         <el-menu mode="vertical" :collapse="isCollapse" @open="handleOpen">
-            <!-- <router-link to="/home">
-                <el-menu-item index="0">
-                    <i class="fa fa-margin fa-server"></i>
-                    <span slot="title">首页</span>
-                </el-menu-item>
-            </router-link> -->
-            <!-- 循环出主体内容 -->
-            <template>
-                <el-submenu v-for="item in listItemOne" :index="item.code" :key="item.code">
-                    <template slot="title">
-                        <i :class="'fa fa-margin '+item.icon"></i>
-                        <img :src="item.avatar" alt="" class="avatarleft">
-                        <span>{{item.text}}</span>
-                    </template>
-
-                    <el-submenu v-if="item.children" v-for="(child,seq) in item.children" :index="child.code" :key="seq">
-                        <!-- 二级目录 -->
+            <el-scrollbar>
+                <template>
+                    <el-submenu v-for="item in listItemOne" :index="item.code" :key="item.code">
                         <template slot="title">
-                            <i :class="'fa fa-margin '+item.icon"></i>  
-                              <img :src="item.avatar" alt="" class="avatarleft">                   
-                            <span>{{child.text}}</span>
+                            <img :src="item.avatar" alt="" class="avatarleft fa-margin">
+                            <span>{{item.text}}</span>
                         </template>
-                          <!-- 三级目录  暂时不用-->
-                        <!-- <router-link v-if="item.children" v-for="(citem,cindex) in child.children" :to="citem.path"
+
+                        <el-submenu v-if="item.children" v-for="(child,seq) in item.children" :index="child.code" :key="seq">
+                            <!-- 二级目录 -->
+                            <template slot="title">
+                                <img :src="item.avatar" alt="" class="avatarleft fa-margin">
+                                <span>{{child.text}}</span>
+                            </template>
+                            <!-- 三级目录  暂时不用-->
+                            <!-- <router-link v-if="item.children" v-for="(citem,cindex) in child.children" :to="citem.path"
                             :key="cindex">
                             <el-menu-item :index='citem.path'>
                                 
                                 <span>{{citem.text}}</span>
                             </el-menu-item>
                         </router-link> -->
-                        
+                        </el-submenu>
                     </el-submenu>
-                </el-submenu>
-            </template>
+                </template>
 
-
-            <router-link to="/test">
-                <el-menu-item index="3">
-                    <i class="fa fa-margin fa-server"></i>
-                    <span slot="title">测试</span>
-                </el-menu-item>
-            </router-link>
+                <router-link to="/banlanceSheet">
+                    <el-menu-item index="3">
+                        <i class="fa fa-margin fa-server"></i>
+                        <span slot="title">测试</span>
+                    </el-menu-item>
+                </router-link>
+            </el-scrollbar>
         </el-menu>
 
     </div>
@@ -59,17 +50,16 @@
     export default {
         name: "leftmenu",
         created() {
-            this.fetchDataInit(this.userId, "10")
+              findnode(this.userId, "10").then(response => {
+                    this.listItemOne = response.data.data
+                })
         },
         data() {
             return {
                 userId: this.$store.getters.user.user.id,
-                listItemOne: [],
-                listItemTwo: [],
-                nodes: [],
-                tempNodes: [],
-                sideList: [], //所有项目
-                clickNodeId: "10"
+                listItemOne: [],              
+                nodes: [],            
+                clickNodeId: ""
             };
         },
         computed: {
@@ -79,9 +69,7 @@
             isCollapse() {
                 return !this.sidebar.opened
             }
-
         },
-
         methods: {
             handleOpen(key, keyPath) {
                 console.log(keyPath);
@@ -106,19 +94,10 @@
                     //         }
                     //     ])
                     console.log(this.listItemOne);
+                } else {
+                    this.fetchData(this.userId, keyPath[1])
                 }
-                else{
-                    this.fetchData(this.userId, keyPath[1]) 
-                }
-
             },
-            fetchDataInit(userId, code) {
-                findnode(userId, code).then(response => {
-                    this.listItemOne = response.data.data
-                })
-            },
-
-
             fetchData(userId, code) {
                 var clickNodeId = userId + "_" + code;
                 var flag = false;
@@ -127,6 +106,7 @@
                 for (let index = 0; index < this.nodes.length; index++) {
                     if (this.nodes[index] === clickNodeId) {
                         flag = true
+                        break;
                     }
                 }
                 if (!flag) {
@@ -135,8 +115,6 @@
                         if (Number(code) < 9999) {
                             console.log(code);
                             console.log(this.nodes);
-
-
                             for (let index = 0; index < this.listItemOne.length; index++) {
                                 // 匹配哪个children值加进去 
                                 if (this.listItemOne[index].code === code) {
@@ -156,14 +134,6 @@
                     })
                 }
             }
-        },
-        watch: {
-
         }
     };
 </script>
-<style lang='scss'>
-
-
-
-</style>
