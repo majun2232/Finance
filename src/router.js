@@ -16,7 +16,7 @@ const router = new Router({
       children: [{
           path: '',
           component: () =>
-            import('./views/layout/infoshow'),
+            import('./views/infoshow'),
         },
         {
           path: '/banlanceSheet',
@@ -28,20 +28,9 @@ const router = new Router({
           path: '/infoshow',
           name: 'infoshow',
           component: () =>
-            import('./views/layout/infoshow'),
+            import('./views/infoshow'),
         },
-        {
-          path: '/foundlist',
-          name: 'FundList',
-          component: () =>
-            import('./views/layout/Cash/FundList'),
-        },
-        {
-          path: '/foodlist',
-          name: 'foodlist',
-          component: () =>
-            import('./views/layout/goodsShow'),
-        },
+       
         {
           path: '/companyTree',
           name: 'companyTree',
@@ -63,12 +52,7 @@ const router = new Router({
       component: () =>
         import('./views/layout/Login/Login'),
     },
-    {
-      path: '/register',
-      name: 'register',
-      component: () =>
-        import('./views/layout/Login/Register'),
-    },
+   
     {
       path: '*',
       name: '/404',

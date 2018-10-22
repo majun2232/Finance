@@ -25,10 +25,7 @@
                 <el-form-item>
                     <el-button type="primary" style="width:100%;" @click="submitForm('loginForm')">登陆</el-button>
                 </el-form-item>
-                <div class="tiparea">
-                    <p>还没有账号?现在<router-link to='register'>注册</router-link>
-                    </p>
-                </div>
+             
             </el-form>
         </div>
     </div>
@@ -39,7 +36,6 @@
         login
     } from '~api/login.js'
     import router from '../../../router.js'
-    import jwt_decode from 'jwt-decode'
     import store from '../../../store'
 
     export default {
@@ -119,14 +115,7 @@
                     }
                 });
             },
-            // isEmpty(value) {
-            //     return (
-            //         value === undefined ||
-            //         value === null ||
-            //         (typeof value === "object" && Object.keys(value).length === 0) ||
-            //         (typeof value === "string" && value.trim().length === 0)
-            //     );
-            // }
+          
         }
     }
 </script>

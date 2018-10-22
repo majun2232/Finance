@@ -1,9 +1,8 @@
 const path = require('path')
 const debug = process.env.NODE_ENV !== 'production'
-const goods = require("./data.json")
-const finance= require("./tableData.json")
-const finance01= require("./tableData1.json")
-const company = require("./company.json")
+const finance= require("./static/mock/tableData.json")
+const finance01= require("./static/mock/tableData1.json")
+const company = require("./static/mock/company.json")
 
 	
 function resolve (dir) {
@@ -80,10 +79,7 @@ module.exports = {
         },
         // 自定义加载数据
         before: app => {
-            // http://localhost:8080/api/goods
-            app.get('/api/goods', (req, res) => {
-                res.json(goods)
-            }),
+           
                // http://localhost:8080/api/qwe
                app.get('/api/qwe', (req, res) => {
                 res.json(company)

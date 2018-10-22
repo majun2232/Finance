@@ -21,7 +21,7 @@ $light_gray:#000;
         box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.5);
         border-radius: 5px;
         // todo
-        // margin: 200px auto;
+        margin: 200px auto;
 
 
         .bannerimg {
@@ -79,21 +79,7 @@ $light_gray:#000;
                 color: #000;
             }
     
-         
-    
-            // .tips {
-            //     font-size: 14px;
-            //     color: #fff;
-            //     margin-bottom: 10px;
-    
-            //     span {
-            //         &:first-of-type {
-            //             margin-right: 16px;
-            //         }
-            //     }
-            // }
-    
-         
+   
     
             .show-pwd {
                 position: absolute;
@@ -105,12 +91,7 @@ $light_gray:#000;
                 user-select: none;
             }
     
-            // 下面不要
-            .tiparea {
-                text-align: right;
-                font-size: 12px;
-                color: #333;
-            }
+       
     
 
             
