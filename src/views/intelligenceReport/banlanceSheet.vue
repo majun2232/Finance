@@ -14,18 +14,12 @@
                     </el-tooltip>
                 </template>
             </el-table-column>
-            <el-table-column prop="A" :label="hD[2].text" align='center' width="250">
+
+            <el-table-column v-for="item of CalacuteCols" :key=item prop=item :label="hD[2].text" align='center' width="250">
                 <template slot-scope="scope">
-                    <span style="color:#00d053"> {{scope.row.A }}</span>
+                    <span style="color:#00d053"> {{scope.row[item]}}</span>
                 </template>
             </el-table-column>
-
-            <el-table-column prop="B" :label="hD[3].text" align='center' width="250">
-                <template slot-scope="scope">
-                    <span style="color:#00d053"> {{scope.row.B }}</span>
-                </template>
-            </el-table-column>
-
 
         </el-table>
     </div>
@@ -38,6 +32,8 @@
                 tableData: [],
                 hD: [],
                 valueList: [],
+                CalacuteCols:[]
+
             }
         },
         created() {
@@ -49,8 +45,11 @@
                 //    console.log( this.tableData);
                 // 得出列数的值,获取A,B 
                 let needCalacuteCols = this.hD.filter(item => item.type === "decimal");
+                
+                   
                 for (let index = 0; index < needCalacuteCols.length; index++) {
                     const ele = needCalacuteCols[index].id;
+                    this.CalacuteCols.push(ele)
                     // console.info(ele);
                     var coutlist = []
                     this.valueList = [],
@@ -118,7 +117,8 @@
                 var eventvalue = []
                 // 得到计算最后的值eventvalue
                 itemValue.forEach(element => {
-                    eventvalue.push(eval(element))
+                    // eventvalue.push(eval(element))
+                      eventvalue.push(element)
                 })
                 // console.log(eventvalue);
                 // 把计算的值替换表达式,并渲染到页面
