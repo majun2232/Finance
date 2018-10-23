@@ -35,8 +35,8 @@
     import {
         login
     } from '~api/login.js'
-    import router from '../../../router.js'
-    import store from '../../../store'
+    import router from '@/router'
+    import store from '@/store'
 
     export default {
         name: 'Login',

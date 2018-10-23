@@ -20,7 +20,6 @@
                     <span style="color:#00d053"> {{scope.row[item]}}</span>
                 </template>
             </el-table-column>
-
         </el-table>
     </div>
 </template>
@@ -29,59 +28,50 @@
     export default {
         data() {
             return {
-                tableData: [],
-                hD: [],
                 valueList: [],
-                CalacuteCols:[],
-                incomeDate:[]
-
+                CalacuteCols: []
             }
         },
+        props:{
+            tableData,
+            hD
+        },
         created() {
-            this.$axios.get("/api/10101/201803/0002").then(res => {
-               this. incomeDate=res.data
-                this.tableData = this. incomeDate.body;
-                this.hD =this. incomeDate.header;
-                //  console.log( this.hD);
-                //    console.log( this.tableData);
-                // 得出列数的值,获取A,B 
-                let needCalacuteCols = this.hD.filter(item => item.type === "decimal");
-                
-                   
-                for (let index = 0; index < needCalacuteCols.length; index++) {
-                    const ele = needCalacuteCols[index].id;
-                    this.CalacuteCols.push(ele)
-                    // console.info(ele);
-                    var coutlist = []
-                    this.valueList = [],
-                        this.tableData.forEach(element => {
-                            if (isNaN(element[ele])) {
-                                // console.log(element)
-                                // 得到含计算公式的cell集合
-                                coutlist.push(element[ele])
+            // 得出列数的值,获取A,B 
+            let needCalacuteCols = this.hD.filter(item => item.type === "decimal");
 
-                            } else {
-                                // 得到只含数据的集合
-                                this.valueList.push(element)
-                            }
-                        });
-                    // console.log(coutlist);
-                    var itemExpression = []
-                    // 遍历含公式的cell集合
-                    coutlist.forEach(element => {
-                        // console.log(element);
-                        //  得到每个行的值,并且替换的事一起干了
-                        var item = this.getsell(element, ele)
-                        itemExpression.push(item)
+
+            for (let index = 0; index < needCalacuteCols.length; index++) {
+                const ele = needCalacuteCols[index].id;
+                this.CalacuteCols.push(ele)
+                // console.info(ele);
+                var coutlist = []
+                this.valueList = [],
+                    this.tableData.forEach(element => {
+                        if (isNaN(element[ele])) {
+                            // console.log(element)
+                            // 得到含计算公式的cell集合
+                            coutlist.push(element[ele])
+
+                        } else {
+                            // 得到只含数据的集合
+                            this.valueList.push(element)
+                        }
                     });
-                    // console.log(itemExpression);
-                    //   得到替换后的表达式,在此进行 计算
-                    // console.log(eval(itemExpression[0]));
-                    this.showdata(itemExpression, ele)
-                }
-
-
-            })
+                // console.log(coutlist);
+                var itemExpression = []
+                // 遍历含公式的cell集合
+                coutlist.forEach(element => {
+                    // console.log(element);
+                    //  得到每个行的值,并且替换的事一起干了
+                    var item = this.getsell(element, ele)
+                    itemExpression.push(item)
+                });
+                // console.log(itemExpression);
+                //   得到替换后的表达式,在此进行 计算
+                // console.log(eval(itemExpression[0]));
+                this.showdata(itemExpression, ele)
+            }
         },
         methods: {
             // 得到每个行的值,并且替换的事一起干了

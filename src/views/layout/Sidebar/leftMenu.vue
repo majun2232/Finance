@@ -3,28 +3,29 @@
         <div class="logo-contener"></div>
         <el-menu mode="vertical" :collapse="isCollapse" @open="handleOpen">
             <el-scrollbar>
-                <template>
-                    <el-submenu v-for="item in listItemOne" :index="item.code" :key="item.code">
+                <template v-for="item in listItemOne">
+                    <el-submenu v-if="item.children" :index="item.code" :key="item.code">
                         <template slot="title">
                             <img :src="item.avatar" alt="" class="avatarleft fa-margin">
                             <span>{{item.text}}</span>
                         </template>
 
-                        <el-submenu v-if="item.children" v-for="(child,seq) in item.children" :index="child.code" :key="seq">
-                            <!-- 二级目录 -->
-                            <template slot="title">
-                                <img :src="item.avatar" alt="" class="avatarleft fa-margin">
-                                <span>{{child.text}}</span>
-                            </template>
-                            <!-- 三级目录  暂时不用-->
-                            <!-- <router-link v-if="item.children" v-for="(citem,cindex) in child.children" :to="citem.path"
+                        <!-- <router-link v-if="item.children" v-for="(citem,cindex) in item.children" :to="citem.path"
                             :key="cindex">
                             <el-menu-item :index='citem.path'>
-                                
+
                                 <span>{{citem.text}}</span>
                             </el-menu-item>
                         </router-link> -->
-                        </el-submenu>
+                        <el-menu-item v-if="item.children" v-for="(child,seq) in item.children" :index="child.code" :key="seq">
+
+                            <template slot="title">
+                                <!-- <img :src="item.avatar" alt="" class="avatarleft fa-margin"> -->
+                                <span>{{child.text}}</span>
+                            </template>
+
+
+                        </el-menu-item>
                     </el-submenu>
                 </template>
 
@@ -50,15 +51,15 @@
     export default {
         name: "leftmenu",
         created() {
-              findnode(this.userId, "10").then(response => {
-                    this.listItemOne = response.data.data
-                })
+            findnode(this.userId, "10").then(response => {
+                this.listItemOne = response.data.data
+            })
         },
         data() {
             return {
                 userId: this.$store.getters.user.user.id,
-                listItemOne: [],              
-                nodes: [],            
+                listItemOne: [],
+                nodes: [],
                 clickNodeId: ""
             };
         },

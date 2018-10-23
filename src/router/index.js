@@ -12,36 +12,36 @@ const router = new Router({
     {
       path: '/index',
       component: () =>
-        import('./views/layout/index'),
+        import('@v/layout/index'),
       children: [{
           path: '',
           component: () =>
-            import('./views/infoshow'),
+            import('@v/infoshow'),
         },
         {
           path: '/banlanceSheet',
           name: 'banlanceSheet',
           component: () =>
-            import('./views/intelligenceReport/banlanceSheet.vue'),
+            import('@v/intelligenceReport/banlanceSheet.vue'),
         },
         {
           path: '/infoshow',
           name: 'infoshow',
           component: () =>
-            import('./views/infoshow'),
+            import('@v/infoshow'),
         },
        
         {
           path: '/companyTree',
           name: 'companyTree',
           component: () =>
-          import('./components/companyTree.vue'),
+          import('@c/companyTree.vue'),
         },
         {
           path: '/test',
           name: 'test',
           component: () =>
-          import('./views/test'),
+          import('@v/test'),
         }
 
       ]
@@ -50,14 +50,14 @@ const router = new Router({
       path: '/Login',
       name: 'Login',
       component: () =>
-        import('./views/layout/Login/Login'),
+        import('@v/layout/Login/Login'),
     },
    
     {
       path: '*',
       name: '/404',
       component: () =>
-        import('./views/layout/404'),
+        import('@v/layout/404'),
     }
 
   ]

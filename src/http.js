@@ -3,7 +3,7 @@ import {
     Message,
     Loading
 } from 'element-ui';
-import router from './router'
+import router from '@/router'
 
 let loading;
 

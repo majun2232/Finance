@@ -4,7 +4,7 @@
         <div class="topcontent">
             <i class="el-icon-search iconclass"></i>
             <el-button type="text" @click="getname" class="underline">请选择公司信息</el-button>
-            <el-dialog title="选择公司" :visible.sync="dialogVisible"  :before-close="handleClose" :modal-append-to-body="false">
+            <el-dialog title="选择公司" :visible.sync="dialogVisible" :before-close="handleClose" :modal-append-to-body="false">
                 <companyTree />
                 <!-- <span slot="footer" class="dialog-footer">
                         <el-button @click="dialogVisible = false">取 消</el-button>
@@ -12,10 +12,26 @@
                     </span> -->
             </el-dialog>
             <i class="el-icon-date iconclass"></i>
-            <el-button type="text" class="underline">年份选择</el-button>
+            <el-dropdown trigger="click">
+                <el-button type="text" class="underline el-dropdown-link">年份选择
+                    <i class="el-icon-arrow-down el-icon--right"></i>
+                </el-button>
+                <el-dropdown-menu slot="dropdown">
+                    <el-dropdown-item v-for="(item,index) of years" :key="index" @click.native="getyear(item)">{{item}}
+                    </el-dropdown-item>
+                </el-dropdown-menu>
+            </el-dropdown>
 
-            <el-button type="text" class="underline">月份选择</el-button>
-
+            <el-dropdown trigger="click">
+                <el-button type="text" class="underline el-dropdown-link">月份选择
+                    <i class="el-icon-arrow-down el-icon--right"></i>
+                </el-button>
+                <el-dropdown-menu slot="dropdown">
+                    <el-dropdown-item v-for="(item,index) of months" :key="index" @click.native="getmonth(item)">{{item}}
+                    </el-dropdown-item>
+                </el-dropdown-menu>
+            </el-dropdown>
+            <!-- 消息提醒 -->
             <i class="el-icon-bell iconclass"></i>
 
             <div class="userinfo">
@@ -30,7 +46,7 @@
                             <i class="el-icon-caret-bottom el-icon--right"></i>
                         </span>
                         <el-dropdown-menu slot="dropdown" class="headlistUp">
-                            <el-dropdown-item command="info" >
+                            <el-dropdown-item command="info">
                                 <i class="info"></i>
                                 <span>个人信息</span>
                             </el-dropdown-item>
@@ -70,7 +86,11 @@
             return {
                 dialogVisible: false,
                 isCollapse: true,
-                inputCompany: ""
+                inputCompany: "",
+                chooseYear: "",
+                chooseMoth: "",
+                years: [2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018],
+                months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
             }
         },
         components: {
@@ -81,12 +101,12 @@
             // ...mapGetters([
             //     'user', 'sidebar'
             // ])
-              user(){   
-           return this.$store.getters.user.user;
-       },
-       sidebar(){
-            return this.$store.getters.sidebar;
-       }
+            user() {
+                return this.$store.getters.user.user;
+            },
+            sidebar() {
+                return this.$store.getters.sidebar;
+            }
 
         },
         methods: {
@@ -128,10 +148,18 @@
             // 控制折叠
             toggleSideBar() {
                 this.$store.dispatch('ToggleSideBar')
+            },
+            getyear(child) {
+                this.chooseYear = child
+                console.log(this.chooseYear);
+            },
+            getmonth(child) {
+                this.chooseMoth = child
+                console.log(this.chooseMoth);
             }
         }
     }
 </script>
 <style>
-  
+
 </style>

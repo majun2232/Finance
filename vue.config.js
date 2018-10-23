@@ -3,7 +3,8 @@ const debug = process.env.NODE_ENV !== 'production'
 const finance= require("./static/mock/tableData.json")
 const finance01= require("./static/mock/tableData1.json")
 const company = require("./static/mock/company.json")
-
+const Preface = require("./static/mock/Preface.json")
+const PrefaceData = require("./static/mock/PrefaceData.json")
 	
 function resolve (dir) {
     return path.join(__dirname,dir)
@@ -31,7 +32,8 @@ module.exports = {
                '@': resolve('src'),
                '@c': resolve('src/components'),
                '@a': resolve('src/assets'), // 配置静态图片引入别名，引用图片时前面加～,在css中引入则加～
-               '~api': resolve('src/api')
+               '~api': resolve('src/api'),
+               '@v': resolve('src/views'),
              
              }
          }
@@ -86,9 +88,14 @@ module.exports = {
             }),
             app.get('/api/10101/201803/0002', (req, res) => {
                 res.json(finance)
-            })
+            }),
             app.get('/api/10101/201803/0001', (req, res) => {
                 res.json(finance01)
+            }),
+            app.get('/api/Preface', (req, res) => {
+                res.json(Preface)
+            }), app.get('/api/PrefaceData', (req, res) => {
+                res.json(PrefaceData)
             })
 
         },
