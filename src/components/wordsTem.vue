@@ -12,7 +12,8 @@
 </template>
 
 <script>
-/* 这是一个生成文字报表的子组件,需要使用时,父组件绑定  :inWordDate='inWordDate' :inWodTmp='inWodTmp'  这样的格式
+/* 这是一个生成文字报表的子组件,需要使用时,父组件绑定  :inWordDate='inWordDate' :inWodTmp='inWodTmp'  这样的格式 
+ ,记住所有的模板引用都要加  v-if="flag"  否则会报为定义的错误!!!!!
 需要传一个模板文字和一个对应的数据,在里面会用 this.$set进行数据拼接,传的对象格式为如下,本模板会自动解析传入的数据 
  */
     export default {
@@ -31,7 +32,7 @@
        var pre =this.inWordDate
           this.Preface = this.inWodTmp
           // console.log(this.Preface);
-          for (let index = 0; index < this.Preface.length; index++) {
+          for (let index = 0,len = this.Preface.length; index < len; index++) {
             const ele = this.Preface[index];
             // console.log(ele);
             for (let j = 0; j < pre.length; j++) {

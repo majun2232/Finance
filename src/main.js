@@ -9,6 +9,8 @@ import 'element-ui/lib/theme-chalk/index.css';
 import './styles/index.scss' // global css
 import '@/icons/iconfont.css' // icon
 
+import VCharts from 'v-charts'
+Vue.use(VCharts)
 Vue.config.productionTip = false
 Vue.use(ElementUI);
 
