@@ -21,26 +21,41 @@
                 </template>
             </el-table-column>
         </el-table>
+
     </div>
 </template>
 
 <script>
+/* 这是一个生成表格的子组件,需要使用时,父组件绑定  :incomeDate="****"  这样的格式
+传的对象格式为如下,本模板会自动解析传入的数据 
+ "header": [{
+        "id": "id",
+        "type": "string",
+        "text": "编码"
+    }],
+"body": [{
+        "A": 12,
+        "B": 0,
+        "id": "143660303",
+        "text": " 利息收入",
+        "title": "$660301"
+    } */
     export default {
         data() {
             return {
+                tableData: [],
+                hD: [],
                 valueList: [],
                 CalacuteCols: []
             }
         },
-        props:{
-            tableData,
-            hD
-        },
+        props: ['incomeDate'],
         created() {
+            console.log(this.incomeDate);
+            this.tableData = this.incomeDate.body;
+            this.hD = this.incomeDate.header;
             // 得出列数的值,获取A,B 
             let needCalacuteCols = this.hD.filter(item => item.type === "decimal");
-
-
             for (let index = 0; index < needCalacuteCols.length; index++) {
                 const ele = needCalacuteCols[index].id;
                 this.CalacuteCols.push(ele)
@@ -73,6 +88,7 @@
                 this.showdata(itemExpression, ele)
             }
         },
+
         methods: {
             // 得到每个行的值,并且替换的事一起干了
             // A$1100102

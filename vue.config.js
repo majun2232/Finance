@@ -34,6 +34,7 @@ module.exports = {
                '@a': resolve('src/assets'), // 配置静态图片引入别名，引用图片时前面加～,在css中引入则加～
                '~api': resolve('src/api'),
                '@v': resolve('src/views'),
+               "utils": resolve('src/utils')
              
              }
          }

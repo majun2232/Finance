@@ -1,18 +1,23 @@
 <template>
   <div>
-    <div>{{LiteralData.text}}</div>
-    <span v-for="(item,index) of Preface"  :key="index">
+    <!-- <words-tem :inWordDate='tableData' v-if="flag"></words-tem> -->
+    <!-- <table-show :incomeDate='tableData' v-if="flag"></table-show> -->
+    <!-- <div>{{inWordDate.text}}</div> -->
+    <span v-for="(item,index) of Preface" :key="index">
       <span> {{item.text}}为</span>
       <span v-if=item.unit> {{item.A}} </span>
       <span v-else> {{item.A}}万元 </span>
       <span>{{item.unit}},</span>
     </span>
-    <table :data='PrefaceData'></table>
+
+
+
   </div>
 </template>
 
 <script>
-import table from '@c/table'
+  // import tableShow from '@c/tableTem'
+  // import wordsTem from '@c/wordsTem'
   export default {
     name: '',
     data() {
@@ -20,24 +25,26 @@ import table from '@c/table'
         LiteralData: [],
         PrefaceData: [],
         Preface: [],
-        years: '',
-        month: '',
-        unit: '',
-          tableData: [],
-                hD: []
+        tableData: [],
+        flag: false
       }
+    },
+    components: {
+      // tableShow,
+      // wordsTem
     },
     created() {
       var pre = []
+
       this.$axios.get("/api/PrefaceData").then(res => {
-          pre = res.data;
+          // pre = res.data;
           // console.log(pre);
 
         }),
         this.$axios.get("/api/Preface").then(res => {
           this.LiteralData = res.data
           this.Preface = res.data.model.tables[0].row;
-          console.log( this.Preface);
+          // console.log(this.Preface);
           for (let index = 0; index < this.Preface.length; index++) {
 
             const ele = this.Preface[index];
@@ -45,31 +52,34 @@ import table from '@c/table'
             for (let j = 0; j < pre.length; j++) {
               // debugger
               const element = pre[j];
+              console.log(element);
+
               if (ele.id === element.id) {
                 if (element.B > 100) {
-                  this.Preface.A.push((element.B / 10000).toFixed(2))
-                
+                  // debugger
+                  this.$set(this.Preface, "A", (element.B / 10000).toFixed(2))
+                  console.log(this.Preface);
+
                   break;
-                } else
-                 this.Preface.A.push(element.B.toFixed(2))
-                
-                break;
+                } else {
+                  // this.Preface.A.push(element.B.toFixed(2))
+                  this.$set(this.Preface, "A", element.B.toFixed(2))
+                  break;
+                }
+
               }
             }
 
 
           }
-        }),
-          this.$axios.get("/api/10101/201803/0002").then(res => {
-             this.tableData = res.data.body;
-                this.hD = res.data.header;
-          })
-    },
-    mounted() {
+          console.log(this.Preface);
+        })
+      // this.$axios.get("/api/10101/201803/0002").then(res => {
 
-    },
-    components: {
-// table,
+      //   this.tableData = res.data
+      //   this.flag = true
+      // })
+
     }
   }
 </script>

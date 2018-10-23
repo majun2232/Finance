@@ -1,4 +1,4 @@
-import request from '../http'
+import request from 'utils/http'
 
 export function findnode(userId,code) {
   // console.log("进来请求");
