@@ -5,7 +5,7 @@ const finance01= require("./static/mock/tableData1.json")
 const company = require("./static/mock/company.json")
 const Preface = require("./static/mock/Preface.json")
 const PrefaceData = require("./static/mock/PrefaceData.json")
-	
+const chart = require("./static/mock/chartData.1.json")
 function resolve (dir) {
     return path.join(__dirname,dir)
   }
@@ -95,9 +95,14 @@ module.exports = {
             }),
             app.get('/api/Preface', (req, res) => {
                 res.json(Preface)
-            }), app.get('/api/PrefaceData', (req, res) => {
+            }), 
+            app.get('/api/PrefaceData', (req, res) => {
                 res.json(PrefaceData)
+            }), 
+            app.get('/api/chart', (req, res) => {
+                res.json(chart)
             })
+
 
         },
         

@@ -2,7 +2,7 @@
     <div>
         <words-tem :inWordDate='inWordDate' :inWodTmp='inWodTmp' v-if="flag"></words-tem>
 <table-show :incomeDate="tableData" v-if="flag"></table-show>
-        <ve-histogram :data="chartData"></ve-histogram>
+     <div id="main" style="width: 600px;height:400px;"></div>
     </div>
 </template>
 
@@ -17,10 +17,7 @@
                 inWodTmp: [],
                 tableData: [],
                 flag: false,
-                chartData: {
-                    columns: ['text', 'A'],
-                    rows: []
-                }
+               
             }
         },
         components: {

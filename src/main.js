@@ -9,10 +9,12 @@ import 'element-ui/lib/theme-chalk/index.css';
 import './styles/index.scss' // global css
 import '@/icons/iconfont.css' // icon
 
-import VCharts from 'v-charts'
-Vue.use(VCharts)
+
+
 Vue.config.productionTip = false
 Vue.use(ElementUI);
+// 建一个bus总线挂到vue根实列上,方便非父子组件传值
+const Bus = new Vue()
 
 // 设置一个全局判断是否为空的函数,后面用  this.isEmpty(value)  即可调用
 Vue.prototype.isEmpty = function (value){
@@ -30,5 +32,6 @@ Vue.prototype.$axios = axios;
 new Vue({
   router,
   store,
+  　Bus,
   render: h => h(App)
 }).$mount('#app')

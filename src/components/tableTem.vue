@@ -86,6 +86,8 @@
                 //   得到替换后的表达式,在此进行 计算
                 // console.log(eval(itemExpression[0]));
                 this.showdata(itemExpression, ele)
+
+        
             }
         },
 
