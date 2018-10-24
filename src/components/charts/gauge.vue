@@ -15,7 +15,7 @@ export default {
       type: Object,
       default: {
         A: 12,
-        B: 12,
+
         id: "143660303",
         text: " 测试数据",
         title: "$660301"
@@ -119,55 +119,14 @@ export default {
             }
           }
         },
-        //是否启用拖拽重计算特性，默认关闭(即值为false)
-        calculable: true,
-        xAxis: [
-          {
-            type: "category",
-            data: ["A", "B"],
-            // 坐标轴刻度相关设置。
-            axisTick: {
-              // 类目轴中在 boundaryGap 为 true 的时候有效，可以保证刻度线和标签对齐。如下图：
-              alignWithLabel: true
-            }
-          }
-        ],
-        yAxis: [
-          {
-            type: "value",
-            axisTick: {
-              show: true
-            }
-          }
-        ],
+
         series: [
           {
             name: "销量",
-            type: "bar",
-            stack: "vistors",
-            barWidth: "35%",
-            data: [Data["A"], Data["B"]],
-            animationDuration,
-            itemStyle: {
-              normal: {
-                //每个柱子的颜色即为colorList数组里的每一项，如果柱子数目多于colorList的长度，则柱子颜色循环使用该数组
-                color: function(params) {
-                  var colorList = [
-                    "#3AA1FF",
-                    "#13C2C2",
-                    "rgb(25,46,94)",
-                    "rgb(195,229,235)"
-                  ];
-                  return colorList[params.dataIndex];
-                }
-              },
-              //鼠标悬停时：
-              emphasis: {
-                shadowBlur: 10,
-                shadowOffsetX: 0,
-                shadowColor: "rgba(0, 0, 0, 0.5)"
-              }
-            }
+            type: "gauge",
+            detail: { formatter: "{value}%" },
+            data: [Data["A"] * 100],
+            animationDuration
           }
         ]
       });

@@ -1,52 +1,57 @@
 <template>
-    <div class="dashboard-editor-container">
-        <el-col :xs="24" :sm="24" :lg="6" class="chart-wrapper" v-for="(item,index) of bardata" :key="index">
-            <bar-chart :receiveData='item' v-if="flag" class="barcss" />
-        </el-col>
+    <div>
+        <!-- 柱图 -->
+        <el-row :gutter="24">
+            <el-col :span="6" :xs="24" :sm="24" :lg="6" v-for="(item,index) of bardata" :key="index" class="chart-wrapper">
+                <bar-chart :receiveData='item' v-if="flag" class="bg-purple-light" />
+            </el-col>
+        </el-row>
+   <!-- 仪表图 -->
+        <el-row :gutter="24">
+            <el-col :span="6" :xs="24" :sm="24" :lg="6" v-for="(item,index) of bardata" :key="index" class="chart-wrapper">
+              
+                <gauge :receiveData='item' v-if="flag" class="bg-purple-light" ></gauge>
+            </el-col>
+        </el-row>
+
+
     </div>
 </template>
 
 <script>
-    import BarChart from '@c/charts/BarChart'
-    export default {
-        name: 'indexAnalysis',
-        data() {
-            return {
-                bardata: {},
-            }
-        },
-        components: {
-            BarChart,
-        },
-        created() {
-            this.$axios.get("/api/chart").then(res => {
-                this.bardata = res.data.body
-                console.log(this.bardata);
+import BarChart from "@c/charts/BarChart";
+import gauge from "@c/charts/gauge";
+export default {
+  name: "indexAnalysis",
+  data() {
+    return {
+      bardata: {}
+    };
+  },
+  components: {
+    BarChart,
+    gauge
+  },
+  created() {
+    this.$axios.get("/api/chart").then(res => {
+      this.bardata = res.data.body;
+      console.log(this.bardata);
 
-                this.flag = true;
-            })
-        }
-    }
+      this.flag = true;
+    });
+  }
+};
 </script>
 
 <style lang='scss' scoped>
-    .dashboard-editor-container {
-        // padding: 32px;
-        background-color:red ;
+.chart-wrapper {
+  display: block;
+  background: #f0f2f5;
+  //   padding: 16px 16px 0;
+  margin-top: 24px;
 
- 
-        .chart-wrapper {
-            display: block;
-            background: #fff;
-            padding: 16px 16px 0;
-          margin-top: 24px;
-          width: calc(100%-244px);
-   margin-right: 24px;
- 
-            .barcss {
-
-         
-            }
-        }
-    }
+  .bg-purple-light {
+    background: #fff;
+  }
+}
 </style>
