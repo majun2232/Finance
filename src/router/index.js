@@ -30,13 +30,14 @@ const router = new Router({
           component: () =>
             import('@v/infoshow'),
         },
-       
         {
-          path: '/companyTree',
-          name: 'companyTree',
+          path: '/indexAnalysis',
+          name: 'indexAnalysis',
           component: () =>
-          import('@c/companyTree.vue'),
+          import('@v/intelligentDriving/indexAnalysis'),
         },
+       
+      
         {
           path: '/test',
           name: 'test',

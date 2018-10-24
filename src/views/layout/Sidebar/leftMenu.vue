@@ -13,19 +13,20 @@
                         <!-- <router-link v-if="item.children" v-for="(citem,cindex) in item.children" :to="citem.path"
                             :key="cindex">
                             <el-menu-item :index='citem.path'>
-
                                 <span>{{citem.text}}</span>
                             </el-menu-item>
                         </router-link> -->
-                        <el-menu-item v-if="item.children" v-for="(child,seq) in item.children" :index="child.code" :key="seq">
 
+                        <el-menu-item v-if="item.children" v-for="(child,seq) in item.children" :index="child.code"
+                            :key="seq">
                             <template slot="title">
-                                <!-- <img :src="item.avatar" alt="" class="avatarleft fa-margin"> -->
-                                <span>{{child.text}}</span>
+                                <!-- 路由暂时模拟todo -->
+                                <router-link :to=dataPath[seq]>
+                                    <span>{{child.text}}</span>
+                                </router-link>
                             </template>
-
-
                         </el-menu-item>
+
                     </el-submenu>
                 </template>
 
@@ -60,7 +61,8 @@
                 userId: this.$store.getters.user.user.id,
                 listItemOne: [],
                 nodes: [],
-                clickNodeId: ""
+                clickNodeId: "",
+                dataPath: ['indexAnalysis', "/infoshow", '/test','indexAnalysis', "/infoshow", '/test','indexAnalysis', "/infoshow", '/test']
             };
         },
         computed: {

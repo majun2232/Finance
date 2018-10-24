@@ -5,7 +5,7 @@ const finance01= require("./static/mock/tableData1.json")
 const company = require("./static/mock/company.json")
 const Preface = require("./static/mock/Preface.json")
 const PrefaceData = require("./static/mock/PrefaceData.json")
-const chart = require("./static/mock/chartData.1.json")
+const chart = require("./static/mock/chartData.json")
 function resolve (dir) {
     return path.join(__dirname,dir)
   }

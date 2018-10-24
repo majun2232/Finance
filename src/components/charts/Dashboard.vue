@@ -82,7 +82,7 @@
             left: '2%',
             right: '2%',
             bottom: '3%',
-            backgroundColor:'#666',
+            // backgroundColor:'#666',
             containLabel: true
           },
           // 工具
@@ -115,26 +115,17 @@
           },
           //是否启用拖拽重计算特性，默认关闭(即值为false)    
           calculable: true,
-          xAxis: [{
-            type: 'category',
-            data: ['A', 'B'],
-            // 坐标轴刻度相关设置。
-            axisTick: {
-              // 类目轴中在 boundaryGap 为 true 的时候有效，可以保证刻度线和标签对齐。如下图：
-              alignWithLabel: true
-            }
-          }],
-          yAxis: [{
-            type: 'value',
-            axisTick: {
-              show: true
-            }
-          }],
+         toolbox: {
+        feature: {
+            restore: {},
+            saveAsImage: {}
+        }
+    },
           series: [{
             name: '销量',
-            type: 'bar',
-            stack: 'vistors',
-            barWidth: '60%',
+           type: 'gauge',
+            detail: {formatter:'{value}%'},
+            data: [{value: 50, name: '完成率'}]
             data:  [Data["A"], Data["B"]],
             animationDuration
           }]
