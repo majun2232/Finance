@@ -4,7 +4,7 @@
 
 <script type="text/ecmascript-6">
 import echarts from "echarts";
-require("echarts/theme/macarons"); // echarts theme
+require("echarts/theme/macarons"); // echarts theme1
 import { debounce } from "@/utils";
 export default {
   name: "Radartest1",
