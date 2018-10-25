@@ -12,9 +12,32 @@
 
         <gauge :receiveData='item' v-if="flag" class="bg-purple-light"></gauge>
       </el-col>
+
     </el-row>
     <!-- 线性图 -->
-    <line-chart :receiveData='linedata' v-if="flag"></line-chart>
+    <!-- <line-chart :receiveData='linedata' v-if="flag"></line-chart> -->
+
+    <!-- 饼图1 -->
+    <el-row :gutter="24">
+      <el-col :span="9" class="chart-wrapper">
+        <pie-test v-if="flag" class="bg-purple-light"></pie-test>
+      </el-col>
+       <el-col :span="9" class="chart-wrapper">
+        <pie-test1 v-if="flag" class="bg-purple-light"></pie-test1>
+      </el-col>
+      <el-col :span="6" class="chart-wrapper">
+        <pie-chart v-if="flag" class="bg-purple-light"></pie-chart>
+      </el-col>
+    </el-row>
+    <!-- 雷达图 -->
+    <el-row  :gutter="24">
+      <el-col :span="9" class="chart-wrapper"> 
+<RadarTest1 class="bg-purple-light"></RadarTest1>
+      </el-col>
+      <el-col :span="12"></el-col>
+    </el-row>
+    
+
   </div>
 </template>
 
@@ -22,6 +45,10 @@
 import BarChart from "@c/charts/BarChart";
 import gauge from "@c/charts/gauge";
 import LineChart from "@c/charts/LineChart";
+import PieTest from "@c/charts/Pietest";
+import PieTest1 from "@c/charts/Pietest.1";
+import PieChart from "@c/charts/PieChart";
+import RadarTest1 from "@c/charts/Radartest1";
 export default {
   name: "indexAnalysis",
   data() {
@@ -34,7 +61,11 @@ export default {
   components: {
     BarChart,
     gauge,
-    LineChart
+    LineChart,
+    PieTest,
+    PieTest1,
+    PieChart,
+    RadarTest1
   },
   created() {
     this.$axios.get("/api/chart").then(res => {
@@ -52,7 +83,6 @@ export default {
 
 <style lang='scss' scoped>
 .chart-wrapper {
-  display: block;
   background: #f0f2f5;
   margin-top: 24px;
 
